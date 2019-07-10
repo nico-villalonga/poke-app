@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPokemon } from '../../redux/actions/pokemon';
+import { getPokemonsArray } from '../../redux/reducers/pokemon';
+import PokemonList from '../pokemon-list/PokemonList';
 
-const mapStateToProps = ({ pokemons }) => ({ pokemons });
+const mapStateToProps = state => ({
+	pokemons: getPokemonsArray(state),
+});
 
 const mapDispatchToProps = dispatch => ({
 	getPokemon: query => dispatch(fetchPokemon({ query })),
@@ -17,11 +21,8 @@ class PokemonsView extends Component {
 
 	render() {
     const { pokemons } = this.props;
-    console.log('*****', pokemons);
 
-		return (
-      <p>Look in console.log</p>
-		);
+		return <PokemonList collection={ pokemons } />;
 	}
 }
 

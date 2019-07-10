@@ -25,3 +25,16 @@ export const pokemonReducer = (state = initState, action) => {
       return state;
   }
 };
+
+
+// Feature Selectors
+const getPokemons = ({ pokemons }) => pokemons.collection;
+
+export const getPokemonsArray = state => {
+  const pokemons = getPokemons(state);
+
+  return Object.keys(pokemons).reduce((pokemonArray = [], pokemonId) => {
+    pokemonArray.push(pokemons[pokemonId]);
+    return pokemonArray;
+  }, []);
+}
