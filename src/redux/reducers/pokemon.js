@@ -1,4 +1,4 @@
-import { SET_POKEMON } from '../actions/pokemon';
+import { SET_POKEMON, SELECT_POKEMON, UNSELECT_POKEMON } from '../actions/pokemon';
 
 const initState = {
   selectedPokemonId: null,
@@ -21,6 +21,18 @@ export const pokemonReducer = (state = initState, action) => {
       };
     };
 
+    case SELECT_POKEMON:
+      return {
+        ...state,
+        selectedPokemonId: payload,
+      };
+
+    case UNSELECT_POKEMON:
+      return {
+        ...state,
+        selectedPokemonId: null,
+      };
+
     default:
       return state;
   }
@@ -29,6 +41,13 @@ export const pokemonReducer = (state = initState, action) => {
 
 // Feature Selectors
 const getPokemons = ({ pokemons }) => pokemons.collection;
+
+export const getSelectedPokemonId = ({ pokemons }) => pokemons.selectedPokemonId;
+
+export const getSelectedPokemon = state => {
+  const selectedId = getSelectedPokemonId(state);
+  return getPokemons(state)[selectedId];
+};
 
 export const getPokemonsArray = state => {
   const pokemons = getPokemons(state);

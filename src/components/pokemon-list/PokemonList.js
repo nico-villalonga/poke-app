@@ -2,7 +2,7 @@ import React from 'react';
 import Pokemon from '../pokemon/Pokemon';
 
 const PokemonList = props => {
-  const { collection } = props;
+  const { collection, showDetail } = props;
 
   return (
     <ul>
@@ -11,6 +11,7 @@ const PokemonList = props => {
           <Pokemon
             key={ poke.id }
             pokemon={ poke }
+            showDetail={ showDetail }
           />
         ))
       }
