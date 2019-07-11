@@ -7,7 +7,7 @@ export default {
       homeTown: 'Pallet Town',
       region: 'Kanto',
       pokemons: [25, 7, 1, 4, 17],
-      img: '/images/ash.png',
+      img: '/images/trainers/ash.png',
     },
     2: {
       id: 2,
@@ -16,7 +16,7 @@ export default {
       homeTown: 'Cerulean City',
       region: 'Kanto',
       pokemons: [175, 54, 120, 130, 118],
-      img: '/images/misty.png',
+      img: '/images/trainers/misty.png',
     },
     3: {
       id: 3,
@@ -25,7 +25,7 @@ export default {
       homeTown: 'Pewter Town',
       region: 'Kanto',
       pokemons: [95, 74, 41, 37],
-      img: '/images/brock.png',
+      img: '/images/trainers/brock.png',
     }
   }
 }

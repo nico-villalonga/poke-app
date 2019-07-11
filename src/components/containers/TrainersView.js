@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTrainer } from '../../redux/actions/trainer';
 import { getTrainersArray } from '../../redux/reducers/trainer';
+import List from '../list/List';
+import Trainer from '../trainer/Trainer';
 
 const mapStateToProps = state => ({
   trainers: getTrainersArray(state),
@@ -17,6 +19,7 @@ class TrainersView extends Component {
 
 		getTrainer('1');
 		getTrainer('2');
+		getTrainer('3');
 	}
 
 	render() {
@@ -24,11 +27,12 @@ class TrainersView extends Component {
     console.log('*****', trainers);
 
 		return (
-      <div>
-        <h1>Trainers</h1>
-        <p>look in console.log</p>
-      </div>
-    );
+			<List
+				collection={ trainers }
+				Entity={ Trainer }
+				// showDetail={ this.showDetail }
+			/>
+		);
 	}
 }
 

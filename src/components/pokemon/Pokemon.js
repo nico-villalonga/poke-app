@@ -2,12 +2,12 @@ import React from 'react';
 import { Container } from './PokemonStyle';
 
 const Pokemon = props => {
-  const { pokemon, showDetail } = props;
+  const { data, showDetail } = props;
 
   return (
-    <Container onClick={ showDetail(pokemon.id) }>
-      { pokemon.sprites && <img alt="" src={pokemon.sprites.front_default} /> }
-      <p>{ pokemon.name }</p>
+    <Container onClick={ showDetail(data.id) }>
+      { data.sprites && <img alt="" src={data.sprites.front_default} /> }
+      <p>{ data.name }</p>
     </Container>
   );
 }

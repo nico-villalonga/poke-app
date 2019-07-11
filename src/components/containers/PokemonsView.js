@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPokemon, selectPokemon } from '../../redux/actions/pokemon';
 import { getPokemonsArray } from '../../redux/reducers/pokemon';
-import PokemonList from '../pokemon-list/PokemonList';
+import List from '../list/List';
+import Pokemon from '../pokemon/Pokemon';
 
 const mapStateToProps = state => ({
 	pokemons: getPokemonsArray(state),
@@ -29,7 +30,13 @@ class PokemonsView extends Component {
 	render() {
     const { pokemons } = this.props;
 
-		return <PokemonList collection={ pokemons } showDetail={ this.showDetail } />;
+		return (
+			<List
+				collection={ pokemons }
+				Entity={ Pokemon }
+				showDetail={ this.showDetail }
+			/>
+		);
 	}
 }
 
