@@ -1,5 +1,6 @@
 import apiMiddleware from './core/api';
 import pokemonMiddleware from './feature/pokemon';
+import trainerMiddleware from './feature/trainer';
 
 // create the core middleware array
 const coreMiddleware = [
@@ -8,7 +9,8 @@ const coreMiddleware = [
 
 // create the feature middleware array
 const featureMiddleware = [
-  pokemonMiddleware
+  pokemonMiddleware,
+  trainerMiddleware,
 ];
 
 export default [...featureMiddleware, ...coreMiddleware];

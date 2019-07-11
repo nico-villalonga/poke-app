@@ -10,7 +10,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     const { feature } = payload;
 
     axios({ ...payload })
-      .then(response => dispatch(apiSuccess({ pokemon: response.data, feature })))
+      .then(response => dispatch(apiSuccess({ data: response.data, feature })))
       .catch(error => {
         console.log('API ERROR: ', error);
         return dispatch(apiError({ error, feature }))

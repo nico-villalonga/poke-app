@@ -9,9 +9,9 @@ export const apiRequest = ({ url, method, feature, data = {}, headers = {} }) =>
   payload: { url, method, feature, data, headers },
 });
 
-export const apiSuccess = ({ pokemon, feature }) => ({
+export const apiSuccess = ({ data, feature }) => ({
   type: `${feature} ${API_SUCCESS}`,
-  payload: pokemon,
+  payload: data,
   meta: { feature },
 });
 
