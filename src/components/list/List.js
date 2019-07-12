@@ -1,7 +1,7 @@
 import React from 'react';
 
 const List = props => {
-  const { collection, Entity, showDetail } = props;
+  const { collection, entity: Entity, showDetail } = props;
 
   return (
     <ul>

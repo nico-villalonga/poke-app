@@ -29,7 +29,7 @@ class TrainersView extends Component {
 		return (
 			<List
 				collection={ trainers }
-				Entity={ Trainer }
+				entity={ Trainer }
 				// showDetail={ this.showDetail }
 			/>
 		);

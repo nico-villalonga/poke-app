@@ -28,12 +28,12 @@ class PokemonsView extends Component {
 	}
 
 	render() {
-    const { pokemons } = this.props;
+		const { pokemons } = this.props;
 
 		return (
 			<List
 				collection={ pokemons }
-				Entity={ Pokemon }
+				entity={ Pokemon }
 				showDetail={ this.showDetail }
 			/>
 		);
