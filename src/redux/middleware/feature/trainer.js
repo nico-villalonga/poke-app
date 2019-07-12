@@ -13,7 +13,7 @@ const trainerMiddleware = ({ dispatch }) => (next) => (action) => {
       return dispatch(apiSuccess({ data: response.data[payload], feature: TRAINER }));
 
     case `${TRAINER} ${API_SUCCESS}`:
-      return next(setTrainer({ trainer: payload }));
+      return next(setTrainer({ data: payload, normalizeKey: 'id' }));
 
     case `${TRAINER} ${API_ERROR}`:
 			return console.log('trainer api error');

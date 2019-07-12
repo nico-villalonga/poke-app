@@ -24,7 +24,6 @@ class TrainersView extends Component {
 
 	render() {
     const { trainers } = this.props;
-    console.log('*****', trainers);
 
 		return (
 			<List

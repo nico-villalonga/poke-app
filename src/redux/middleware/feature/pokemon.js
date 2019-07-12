@@ -16,7 +16,7 @@ const pokemonMiddleware = () => (next) => (action) => {
 		}
 
     case `${POKEMON} ${API_SUCCESS}`:
-      return next(setPokemon({ pokemon: payload }));
+      return next(setPokemon({ data: payload, normalizeKey: 'id' }));
 
     case `${POKEMON} ${API_ERROR}`:
 			return console.log('pokemon api error');

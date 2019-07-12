@@ -13,10 +13,10 @@ export const fetchPokemon = ({ query = '' }) => ({
   payload: query,
 });
 
-export const setPokemon = ({ pokemon }) => ({
+export const setPokemon = ({ data, normalizeKey }) => ({
   type: SET_POKEMON,
-  payload: pokemon,
-  meta: { feature: POKEMON },
+  payload: data,
+  meta: { feature: POKEMON, normalizeKey },
 });
 
 export const selectPokemon = ({ id }) => ({

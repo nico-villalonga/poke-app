@@ -12,7 +12,7 @@ export const trainerReducer = (state = initState, action) => {
     case SET_TRAINER: {
       const collection = {
         ...state.collection,
-        [payload.id]: payload,
+        ...payload,
       };
 
       return {

@@ -12,7 +12,7 @@ export const pokemonReducer = (state = initState, action) => {
     case SET_POKEMON: {
       const collection = {
         ...state.collection,
-        [payload.id]: payload,
+        ...payload,
       };
 
       return {

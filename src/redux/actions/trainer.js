@@ -13,10 +13,10 @@ export const fetchTrainer = ({ query = '' }) => ({
   payload: query,
 });
 
-export const setTrainer = ({ trainer }) => ({
+export const setTrainer = ({ data, normalizeKey }) => ({
   type: SET_TRAINER,
-  payload: trainer,
-  meta: { feature: TRAINER },
+  payload: data,
+  meta: { feature: TRAINER, normalizeKey },
 });
 
 export const selectTrainer = ({ id }) => ({
