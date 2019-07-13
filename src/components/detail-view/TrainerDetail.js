@@ -21,15 +21,17 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class TrainerDetail extends Component {
+  componentDidMount() {
+    const { getPokemons, selectedTrainer } = this.props;
+    getPokemons(selectedTrainer.pokemons);
+  }
+
   render() {
-    const { selectedId, selectedTrainer, getPokemons, close } = this.props;
+    const { selectedId, selectedTrainer, close } = this.props;
 
     if (selectedId === null) {
       return null;
     }
-
-    getPokemons(selectedTrainer.pokemons);
-
 
     const {
       name, sprites, gender,

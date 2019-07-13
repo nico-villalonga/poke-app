@@ -1,14 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.aside`
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background: rgba(0,0,0,0.7);
-	overflow: auto;
-`;
+export const Wrapper = styled.div``;
 
 export const Container = styled.div`
 	max-width: 640px;

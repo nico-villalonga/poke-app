@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { fetchTrainer, selectTrainer } from '../../redux/actions/trainer';
-import { getTrainersArray } from '../../redux/reducers/trainer';
+import { getTrainersArray, getSelectedTrainerId } from '../../redux/reducers/trainer';
+import Modal from '../modal/Modal';
 import List from '../list/List';
 import Trainer from '../trainer/Trainer';
+import TrainerDetail from '../detail-view/TrainerDetail';
 
 const mapStateToProps = state => ({
+	selectedId: getSelectedTrainerId(state),
   trainers: getTrainersArray(state),
 });
 
@@ -32,14 +35,25 @@ class TrainersView extends Component {
 	}
 
 	render() {
-    const { trainers } = this.props;
+    const { selectedId, trainers } = this.props;
 
 		return (
-			<List
-				collection={ trainers }
-				entity={ Trainer }
-				showDetail={ this.showDetail }
-			/>
+			<Fragment>
+				<List
+					collection={ trainers }
+					entity={ Trainer }
+					showDetail={ this.showDetail }
+				/>
+
+				{
+					selectedId
+					&& (
+						<Modal>
+							<TrainerDetail />
+						</Modal>
+					)
+				}
+			</Fragment>
 		);
 	}
 }

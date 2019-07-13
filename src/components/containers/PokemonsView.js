@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { fetchPokemon, selectPokemon } from '../../redux/actions/pokemon';
-import { getPokemonsArray } from '../../redux/reducers/pokemon';
+import { getPokemonsArray, getSelectedPokemonId } from '../../redux/reducers/pokemon';
+import Modal from '../modal/Modal';
 import List from '../list/List';
 import Pokemon from '../pokemon/Pokemon';
+import PokemonDetail from '../detail-view/PokemonDetail';
 
 const mapStateToProps = state => ({
+	selectedId: getSelectedPokemonId(state),
 	pokemons: getPokemonsArray(state),
 });
 
@@ -31,14 +34,25 @@ class PokemonsView extends Component {
 	}
 
 	render() {
-		const { pokemons } = this.props;
+		const { selectedId, pokemons } = this.props;
 
 		return (
-			<List
-				collection={ pokemons }
-				entity={ Pokemon }
-				showDetail={ this.showDetail }
-			/>
+			<Fragment>
+				<List
+					collection={ pokemons }
+					entity={ Pokemon }
+					showDetail={ this.showDetail }
+				/>
+
+				{
+					selectedId
+					&& (
+						<Modal>
+							<PokemonDetail />
+						</Modal>
+					)
+				}
+			</Fragment>
 		);
 	}
 }
