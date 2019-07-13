@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { isEmpty } from 'ramda';
 import { fetchPokemon, selectPokemon } from '../../redux/actions/pokemon';
 import { getPokemonsArray } from '../../redux/reducers/pokemon';
 import List from '../list/List';
@@ -16,10 +17,12 @@ const mapDispatchToProps = dispatch => ({
 
 class PokemonsView extends Component {
 	componentDidMount() {
-		const { getPokemon } = this.props;
+		const { pokemons, getPokemon } = this.props;
 
-		getPokemon('pokemon/1');
-		getPokemon('pokemon/4');
+		if (isEmpty(pokemons)) {
+			getPokemon(1);
+			getPokemon(4);
+		}
 	}
 
 	showDetail = id => () => {

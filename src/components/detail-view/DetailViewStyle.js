@@ -22,20 +22,22 @@ export const Container = styled.div`
 export const ImageContainer = styled.div`
   display: flex;
   align-items: center;
+  padding: 0 25px;
 
   & img {
-    max-width: 600px;
+    max-width: 100px;
+    max-height: 100px;
     width: auto;
   }
 
   & h2 {
     text-transform: capitalize;
-    margin: 0;
+    margin-left: 15px;
   }
 `;
 
 export const InfoContainer = styled.div`
-  margin: 0 25px;
+  padding: 0 25px;
 `;
 
 export const CloseButton = styled.div`

@@ -5,7 +5,7 @@ import { getSelectedPokemonId, getSelectedPokemon } from '../../redux/reducers/p
 import {
 	Wrapper, CloseButton, Container,
 	ImageContainer, InfoContainer,
-} from './PokemonDetailStyle';
+} from './DetailViewStyle';
 
 
 const mapStateToProps = state => ({
