@@ -40,7 +40,7 @@ export const pokemonReducer = (state = initState, action) => {
 
 
 // Feature Selectors
-const getPokemons = ({ pokemons }) => pokemons.collection;
+export const getPokemons = ({ pokemons }) => pokemons.collection;
 
 export const getSelectedPokemonId = ({ pokemons }) => pokemons.selectedPokemonId;
 

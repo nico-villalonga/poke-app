@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { unselectTrainer } from '../../redux/actions/trainer';
 import { checkOrFetchPokemon } from '../../redux/actions/pokemon';
-import { getSelectedTrainerId, getSelectedTrainer } from '../../redux/reducers/trainer';
+import { getSelectedTrainer } from '../../redux/reducers/trainer';
+import { getTrainerPokemons } from '../../redux/selectors/trainer';
 import {
-	Wrapper, CloseButton, Container,
-	ImageContainer, InfoContainer,
+	Wrapper, CloseButton, Container, ImageContainer,
+  InfoContainer, ThumbsContainer, ThumbsList,
 } from './DetailViewStyle';
 
 
 const mapStateToProps = state => ({
-	selectedId: getSelectedTrainerId(state),
   selectedTrainer: getSelectedTrainer(state),
-  pokemons: [],
+  pokemons: getTrainerPokemons(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -27,15 +27,10 @@ class TrainerDetail extends Component {
   }
 
   render() {
-    const { selectedId, selectedTrainer, close } = this.props;
-
-    if (selectedId === null) {
-      return null;
-    }
-
+    const { selectedTrainer, close, pokemons } = this.props;
     const {
       name, sprites, gender,
-      homeTown, region, pokemons,
+      homeTown, region,
     } = selectedTrainer;
 
     return (
@@ -44,7 +39,7 @@ class TrainerDetail extends Component {
 
         <Container>
           <ImageContainer>
-            { sprites && <img alt="" src={sprites.front_default} /> }
+            { sprites && <img alt="" src={ sprites.front_default } /> }
             <h2>{ name }</h2>
           </ImageContainer>
 
@@ -53,19 +48,24 @@ class TrainerDetail extends Component {
             <p><strong>Region:</strong> { region }</p>
             <p><strong>Gender:</strong> { gender }</p>
 
-            <div>
+            <ThumbsContainer>
               <p><strong>Pokemons:</strong></p>
-              <ul>
-                {/* { types.map((type, i) => <li key={ i }>{type.type.name}</li>) } */}
-              </ul>
-            </div>
-
-            <div>
-              <p><strong>Abilities:</strong></p>
-              <ul>
-                {/* { abilities.map((ability, i) => <li key={ i }>{ability.ability.name}</li>) } */}
-              </ul>
-            </div>
+              <ThumbsList>
+                {
+                  pokemons.map(poke => {
+                    return (
+                    <li key={ poke.id }>
+                      <img
+                        alt={ poke.name }
+                        title={ poke.name }
+                        src={ poke.sprites.front_default }
+                      />
+                    </li>
+                  )
+                })
+                }
+              </ThumbsList>
+            </ThumbsContainer>
           </InfoContainer>
         </Container>
       </Wrapper>

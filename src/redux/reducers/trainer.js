@@ -40,13 +40,18 @@ export const trainerReducer = (state = initState, action) => {
 
 
 // Feature Selectors
-const getTrainers = ({ trainers }) => trainers.collection;
+export const getTrainers = ({ trainers }) => trainers.collection;
 
 export const getSelectedTrainerId = ({ trainers }) => trainers.selectedTrainerId;
 
 export const getSelectedTrainer = state => {
   const selectedId = getSelectedTrainerId(state);
   return getTrainers(state)[selectedId];
+};
+
+export const getTrainerPokemonIds = state => {
+  const selectedTrainer = getSelectedTrainer(state);
+  return selectedTrainer.pokemons;
 };
 
 export const getTrainersArray = state => {

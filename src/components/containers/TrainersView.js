@@ -2,20 +2,23 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { fetchTrainer, selectTrainer } from '../../redux/actions/trainer';
-import { getTrainersArray, getSelectedTrainerId } from '../../redux/reducers/trainer';
+import { showModal } from '../../redux/actions/ui';
+import { getTrainersArray } from '../../redux/reducers/trainer';
+import { getModalVisibility } from '../../redux/reducers/ui';
 import Modal from '../modal/Modal';
 import List from '../list/List';
 import Trainer from '../trainer/Trainer';
 import TrainerDetail from '../detail-view/TrainerDetail';
 
 const mapStateToProps = state => ({
-	selectedId: getSelectedTrainerId(state),
-  trainers: getTrainersArray(state),
+	trainers: getTrainersArray(state),
+	modalVisible: getModalVisibility(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getTrainer: query => dispatch(fetchTrainer({ query })),
-	showDetail: id => dispatch(selectTrainer({ id })),
+	setTrainer: id => dispatch(selectTrainer({ id })),
+	modalShow: () => dispatch(showModal()),
 });
 
 class TrainersView extends Component {
@@ -30,12 +33,13 @@ class TrainersView extends Component {
 	}
 
 	showDetail = id => () => {
-		const { showDetail } = this.props;
-		showDetail(id);
+		const { setTrainer, modalShow } = this.props;
+		setTrainer(id);
+		modalShow();
 	}
 
 	render() {
-    const { selectedId, trainers } = this.props;
+		const { trainers, modalVisible } = this.props;
 
 		return (
 			<Fragment>
@@ -46,7 +50,7 @@ class TrainersView extends Component {
 				/>
 
 				{
-					selectedId
+					modalVisible
 					&& (
 						<Modal>
 							<TrainerDetail />

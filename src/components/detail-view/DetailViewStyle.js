@@ -29,7 +29,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const InfoContainer = styled.div`
-  padding: 0 25px;
+  padding: 25px;
 `;
 
 export const CloseButton = styled.div`
@@ -38,4 +38,20 @@ export const CloseButton = styled.div`
   position: absolute;
   top: 10px;
   right: 12px;
+`;
+
+export const ThumbsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ThumbsList = styled.ul`
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+  }
 `;
