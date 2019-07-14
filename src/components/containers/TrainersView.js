@@ -26,9 +26,7 @@ class TrainersView extends Component {
 		const { trainers, getTrainer } = this.props;
 
 		if (isEmpty(trainers)) {
-			getTrainer('1');
-			getTrainer('2');
-			getTrainer('3');
+			[...Array(9).keys()].forEach(i => getTrainer(i + 1));
 		}
 	}
 

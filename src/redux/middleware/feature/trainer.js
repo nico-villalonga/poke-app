@@ -1,6 +1,6 @@
 import { TRAINER, FETCH_TRAINER, setTrainer } from '../../actions/trainer';
 import { API_ERROR, API_SUCCESS, apiSuccess } from '../../actions/api';
-import response from '../../../data/trainers/trainers';
+import response from '../../../data/trainers';
 
 const trainerMiddleware = ({ dispatch }) => (next) => (action) => {
 	const { payload, type } = action;
