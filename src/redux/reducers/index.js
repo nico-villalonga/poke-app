@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-import { pokemonReducer } from './pokemon';
+import { gymReducer } from './gym';
 import { trainerReducer } from './trainer';
+import { pokemonReducer } from './pokemon';
 import { uiReducer } from './ui';
 
 const rootReducer = combineReducers({
-  pokemons: pokemonReducer,
+  gyms: gymReducer,
   trainers: trainerReducer,
+  pokemons: pokemonReducer,
   ui: uiReducer,
 });
 

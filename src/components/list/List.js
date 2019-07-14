@@ -1,20 +1,23 @@
 import React from 'react';
+import { Wrapper, Ul} from './ListStyle';
 
 const List = props => {
   const { collection, entity: Entity, showDetail } = props;
 
   return (
-    <ul>
-      {
-        collection.map(data => (
-          <Entity
-            key={ data.id }
-            data={ data }
-            showDetail={ showDetail }
-          />
-        ))
-      }
-    </ul>
+    <Wrapper>
+      <Ul>
+        {
+          collection.map(data => (
+            <Entity
+              key={ data.id }
+              data={ data }
+              showDetail={ showDetail }
+            />
+          ))
+        }
+      </Ul>
+    </Wrapper>
   );
 }
 

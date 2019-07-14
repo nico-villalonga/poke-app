@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import PokemonsView from './components/containers/PokemonsView';
 import TrainersView from './components/containers/TrainersView';
+import GymsView from './components/containers/GymsView';
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Route exact path='/' component={PokemonsView} />
       <Route path='/trainers' component={TrainersView} />
+      <Route path='/gyms' component={GymsView} />
     </Router>
   );
 }
