@@ -1,12 +1,12 @@
 import React from 'react';
-import { Wrapper, ImageContainer } from './GymStyle';
+import { Wrapper, ImageContainer } from './ListElementStyle';
 
-const Gym = props => {
-  const { data, showDetail } = props;
+const ListElement = props => {
+  const { className, data, showDetail } = props;
 
   return (
     <Wrapper onClick={ showDetail(data.id) }>
-      <ImageContainer>
+      <ImageContainer className={ className }>
         { data.sprites && <img alt="" src={data.sprites.front_default} /> }
       </ImageContainer>
 
@@ -15,4 +15,4 @@ const Gym = props => {
   );
 }
 
-export default Gym;
+export default ListElement;

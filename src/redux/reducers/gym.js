@@ -1,4 +1,6 @@
+import { assoc, compose, path } from 'ramda';
 import { SET_GYMS, SELECT_GYM, UNSELECT_GYM } from '../actions/gym';
+import { collectionToArray } from '../../utils/array';
 
 const initState = {
   selectedGymId: null,
@@ -9,29 +11,14 @@ export const gymReducer = (state = initState, action) => {
   const { payload, type } = action;
 
   switch (type) {
-    case SET_GYMS: {
-      const collection = {
-        ...state.collection,
-        ...payload,
-      };
-
-      return {
-        ...state,
-        collection,
-      };
-    };
+    case SET_GYMS:
+      return assoc('collection', payload, state);
 
     case SELECT_GYM:
-      return {
-        ...state,
-        selectedGymId: payload,
-      };
+      return assoc('selectedGymId', payload, state);
 
     case UNSELECT_GYM:
-      return {
-        ...state,
-        selectedGymId: null,
-      };
+      return assoc('selectedGymId', null, state);
 
     default:
       return state;
@@ -40,20 +27,16 @@ export const gymReducer = (state = initState, action) => {
 
 
 // Feature Selectors
-export const getGyms = ({ gyms }) => gyms.collection;
+export const getGyms = path(['gyms', 'collection']);
 
-export const getSelectedGymId = ({ gyms }) => gyms.selectedGymId;
+export const getSelectedGymId = path(['gyms', 'selectedGymId']);
 
 export const getSelectedGym = state => {
   const selectedId = getSelectedGymId(state);
   return getGyms(state)[selectedId];
 };
 
-export const getGymsArray = state => {
-  const gyms = getGyms(state);
-
-  return Object.keys(gyms).reduce((gymArray = [], gymId) => {
-    gymArray.push(gyms[gymId]);
-    return gymArray;
-  }, []);
-}
+export const getGymsArray = compose (
+  collectionToArray,
+  getGyms
+);

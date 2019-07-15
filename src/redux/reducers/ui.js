@@ -1,3 +1,4 @@
+import { assoc, path } from 'ramda';
 import { SHOW_MODAL, HIDE_MODAL } from '../actions/ui';
 
 const initState = {
@@ -7,16 +8,10 @@ const initState = {
 export const uiReducer = (state = initState, action) => {
   switch (action.type) {
     case SHOW_MODAL:
-      return {
-        ...state,
-        modalVisible: true,
-      };
+      return assoc('modalVisible', true, state);
 
-      case HIDE_MODAL:
-        return {
-          ...state,
-          modalVisible: false,
-        };
+    case HIDE_MODAL:
+      return assoc('modalVisible', false, state);
 
     default:
       return state;
@@ -24,4 +19,4 @@ export const uiReducer = (state = initState, action) => {
 }
 
 // Feature Selectors
-export const getModalVisibility = ({ ui }) => ui.modalVisible;
+export const getModalVisibility = path(['ui', 'modalVisible']);

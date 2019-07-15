@@ -8,11 +8,19 @@ export const Wrapper = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  height: 120px;
+  &.trainer {
+    img {
+      max-width: 78px;
+      height: 120px;
+    }
+  }
 
-  img {
-    max-width: 90px;
-    max-height: 140px;
-    padding: 30px;
+  &.gym {
+    height: 120px;
+
+    img {
+      max-width: 90px;
+      padding: 30px;
+    }
   }
 `;

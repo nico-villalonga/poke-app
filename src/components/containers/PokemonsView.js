@@ -7,7 +7,6 @@ import { getPokemonsArray } from '../../redux/reducers/pokemon';
 import { getModalVisibility } from '../../redux/reducers/ui';
 import Modal from '../modal/Modal';
 import List from '../list/List';
-import Pokemon from '../pokemon/Pokemon';
 import PokemonDetail from '../detail-view/PokemonDetail';
 
 const mapStateToProps = state => ({
@@ -44,7 +43,6 @@ class PokemonsView extends Component {
 			<Fragment>
 				<List
 					collection={ pokemons }
-					entity={ Pokemon }
 					showDetail={ this.showDetail }
 				/>
 

@@ -7,7 +7,6 @@ import { getTrainersArray } from '../../redux/reducers/trainer';
 import { getModalVisibility } from '../../redux/reducers/ui';
 import Modal from '../modal/Modal';
 import List from '../list/List';
-import Trainer from '../trainer/Trainer';
 import TrainerDetail from '../detail-view/TrainerDetail';
 
 const mapStateToProps = state => ({
@@ -42,8 +41,8 @@ class TrainersView extends Component {
 		return (
 			<Fragment>
 				<List
+					className="trainer"
 					collection={ trainers }
-					entity={ Trainer }
 					showDetail={ this.showDetail }
 				/>
 

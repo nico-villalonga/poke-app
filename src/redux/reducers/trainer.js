@@ -1,4 +1,6 @@
+import { assoc, assocPath, compose, head, keys, prop, path } from 'ramda';
 import { SET_TRAINER, SELECT_TRAINER, UNSELECT_TRAINER } from '../actions/trainer';
+import { collectionToArray } from '../../utils/array';
 
 const initState = {
   selectedTrainerId: null,
@@ -10,28 +12,15 @@ export const trainerReducer = (state = initState, action) => {
 
   switch (type) {
     case SET_TRAINER: {
-      const collection = {
-        ...state.collection,
-        ...payload,
-      };
-
-      return {
-        ...state,
-        collection,
-      };
-    };
+      const id = head(keys(payload));
+      return assocPath(['collection', id], payload[id], state);
+    }
 
     case SELECT_TRAINER:
-      return {
-        ...state,
-        selectedTrainerId: payload,
-      };
+      return assoc('selectedTrainerId', payload, state);
 
     case UNSELECT_TRAINER:
-      return {
-        ...state,
-        selectedTrainerId: null,
-      };
+      return assoc('selectedTrainerId', null, state);
 
     default:
       return state;
@@ -40,25 +29,21 @@ export const trainerReducer = (state = initState, action) => {
 
 
 // Feature Selectors
-export const getTrainers = ({ trainers }) => trainers.collection;
+export const getTrainers = path(['trainers', 'collection']);
 
-export const getSelectedTrainerId = ({ trainers }) => trainers.selectedTrainerId;
+export const getSelectedTrainerId = path(['trainers', 'selectedTrainerId']);
 
 export const getSelectedTrainer = state => {
   const selectedId = getSelectedTrainerId(state);
   return getTrainers(state)[selectedId];
 };
 
-export const getTrainerPokemonIds = state => {
-  const selectedTrainer = getSelectedTrainer(state);
-  return selectedTrainer.pokemons;
-};
+export const getTrainerPokemonIds = compose(
+  prop('pokemons'),
+  getSelectedTrainer
+);
 
-export const getTrainersArray = state => {
-  const trainers = getTrainers(state);
-
-  return Object.keys(trainers).reduce((trainerArray = [], trainerId) => {
-    trainerArray.push(trainers[trainerId]);
-    return trainerArray;
-  }, []);
-}
+export const getTrainersArray = compose (
+  collectionToArray,
+  getTrainers
+);

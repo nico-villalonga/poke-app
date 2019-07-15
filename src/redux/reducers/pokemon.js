@@ -1,4 +1,6 @@
+import { assoc, assocPath, compose, keys, head, path } from 'ramda';
 import { SET_POKEMON, SELECT_POKEMON, UNSELECT_POKEMON } from '../actions/pokemon';
+import { collectionToArray } from '../../utils/array';
 
 const initState = {
   selectedPokemonId: null,
@@ -10,28 +12,15 @@ export const pokemonReducer = (state = initState, action) => {
 
   switch (type) {
     case SET_POKEMON: {
-      const collection = {
-        ...state.collection,
-        ...payload,
-      };
-
-      return {
-        ...state,
-        collection,
-      };
+      const id = head(keys(payload));
+      return assocPath(['collection', id], payload[id], state);
     };
 
     case SELECT_POKEMON:
-      return {
-        ...state,
-        selectedPokemonId: payload,
-      };
+      return assoc('selectedPokemonId', payload, state);
 
     case UNSELECT_POKEMON:
-      return {
-        ...state,
-        selectedPokemonId: null,
-      };
+      return assoc('selectedPokemonId', null, state);
 
     default:
       return state;
@@ -40,20 +29,16 @@ export const pokemonReducer = (state = initState, action) => {
 
 
 // Feature Selectors
-export const getPokemons = ({ pokemons }) => pokemons.collection;
+export const getPokemons = path(['pokemons', 'collection']);
 
-export const getSelectedPokemonId = ({ pokemons }) => pokemons.selectedPokemonId;
+export const getSelectedPokemonId = path(['pokemons', 'selectedPokemonId']);
 
 export const getSelectedPokemon = state => {
   const selectedId = getSelectedPokemonId(state);
   return getPokemons(state)[selectedId];
 };
 
-export const getPokemonsArray = state => {
-  const pokemons = getPokemons(state);
-
-  return Object.keys(pokemons).reduce((pokemonArray = [], pokemonId) => {
-    pokemonArray.push(pokemons[pokemonId]);
-    return pokemonArray;
-  }, []);
-}
+export const getPokemonsArray = compose (
+  collectionToArray,
+  getPokemons
+);

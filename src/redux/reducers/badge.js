@@ -1,4 +1,6 @@
+import { assoc, compose, path } from 'ramda';
 import { SET_BADGES } from '../actions/badge';
+import { collectionToArray } from '../../utils/array';
 
 const initState = {
   collection: {},
@@ -8,17 +10,8 @@ export const badgeReducer = (state = initState, action) => {
   const { payload, type } = action;
 
   switch (type) {
-    case SET_BADGES: {
-      const collection = {
-        ...state.collection,
-        ...payload,
-      };
-
-      return {
-        ...state,
-        collection,
-      };
-    };
+    case SET_BADGES:
+      return assoc('collection', payload, state);
 
     default:
       return state;
@@ -27,13 +20,9 @@ export const badgeReducer = (state = initState, action) => {
 
 
 // Feature Selectors
-export const getBadges = ({ badges }) => badges.collection;
+export const getBadges = path(['badges', 'collection']);
 
-export const getBadgesArray = state => {
-  const badges = getBadges(state);
-
-  return Object.keys(badges).reduce((badgeArray = [], badgeId) => {
-    badgeArray.push(badges[badgeId]);
-    return badgeArray;
-  }, []);
-}
+export const getBadgesArray = compose (
+  collectionToArray,
+  getBadges
+);
