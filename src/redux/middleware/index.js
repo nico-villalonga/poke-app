@@ -4,6 +4,7 @@ import normalizeMiddleware from './core/normalize';
 import pokemonMiddleware from './feature/pokemon';
 import trainerMiddleware from './feature/trainer';
 import gymMiddleware from './feature/gym';
+import badgeMiddleware from './feature/badge';
 
 // create the core middleware array
 const coreMiddleware = [
@@ -17,6 +18,7 @@ const featureMiddleware = [
   pokemonMiddleware,
   trainerMiddleware,
   gymMiddleware,
+  badgeMiddleware,
 ];
 
 export default [...featureMiddleware, ...coreMiddleware];
