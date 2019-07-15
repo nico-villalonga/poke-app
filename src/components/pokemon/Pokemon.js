@@ -1,14 +1,14 @@
 import React from 'react';
-import { Container } from './PokemonStyle';
+import { Wrapper } from './PokemonStyle';
 
 const Pokemon = props => {
   const { data, showDetail } = props;
 
   return (
-    <Container onClick={ showDetail(data.id) }>
+    <Wrapper onClick={ showDetail(data.id) }>
       { data.sprites && <img alt="" src={data.sprites.front_default} /> }
       <p>{ data.name }</p>
-    </Container>
+    </Wrapper>
   );
 }
 

@@ -2,19 +2,18 @@
 export const GYM = '[Gym]';
 
 // action types
-export const FETCH_GYM = `${GYM} FETCH`;
-export const SET_GYM = `${GYM} SET`;
+export const FETCH_GYMS = `${GYM} FETCH_ALL`;
+export const SET_GYMS = `${GYM} SET`;
 export const SELECT_GYM = `${GYM} SELECT`;
 export const UNSELECT_GYM = `${GYM} UNSELECT`;
 
 // action creators
-export const fetchGym = ({ query = '' }) => ({
-  type: FETCH_GYM,
-  payload: query,
+export const fetchGyms = () => ({
+  type: FETCH_GYMS,
 });
 
-export const setGym = ({ data, normalizeKey }) => ({
-  type: SET_GYM,
+export const setGyms = ({ data, normalizeKey }) => ({
+  type: SET_GYMS,
   payload: data,
   meta: { feature: GYM, normalizeKey },
 });

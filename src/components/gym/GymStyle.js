@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   margin: auto;
   padding: 20px;
   width: 150px;
@@ -13,11 +13,6 @@ export const Container = styled.div`
   margin: 25px;
   border-radius: 50%;
 
-  & img {
-    max-width: 90px;
-    max-height: 140px;
-  }
-
   :hover {
     transform: scale(1.25);
     background: lightgray;
@@ -26,5 +21,15 @@ export const Container = styled.div`
   p {
     margin: 0;
     text-transform: capitalize;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  height: 120px;
+
+  & img {
+    max-width: 90px;
+    max-height: 140px;
+    padding: 30px;
   }
 `;

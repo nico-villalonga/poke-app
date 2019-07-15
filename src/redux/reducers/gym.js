@@ -1,4 +1,4 @@
-import { SET_GYM, SELECT_GYM, UNSELECT_GYM } from '../actions/gym';
+import { SET_GYMS, SELECT_GYM, UNSELECT_GYM } from '../actions/gym';
 
 const initState = {
   selectedGymId: null,
@@ -9,7 +9,7 @@ export const gymReducer = (state = initState, action) => {
   const { payload, type } = action;
 
   switch (type) {
-    case SET_GYM: {
+    case SET_GYMS: {
       const collection = {
         ...state.collection,
         ...payload,

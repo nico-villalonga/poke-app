@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   margin: auto;
   padding: 20px;
   width: 150px;
@@ -14,8 +14,8 @@ export const Container = styled.div`
   border-radius: 50%;
 
   & img {
-    max-width: 90px;
-    max-height: 140px;
+    max-width: 78px;
+    height: 120px;
   }
 
   :hover {

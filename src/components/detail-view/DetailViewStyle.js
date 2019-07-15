@@ -43,7 +43,6 @@ export const CloseButton = styled.div`
 export const ThumbsContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const ThumbsList = styled.ul`

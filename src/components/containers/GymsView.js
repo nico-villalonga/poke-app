@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
-import { fetchGym, selectGym } from '../../redux/actions/gym';
+import { fetchGyms, selectGym } from '../../redux/actions/gym';
 import { showModal } from '../../redux/actions/ui';
 import { getGymsArray } from '../../redux/reducers/gym';
 import { getModalVisibility } from '../../redux/reducers/ui';
@@ -14,19 +14,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getGym: query => dispatch(fetchGym({ query })),
+	getGyms: query => dispatch(fetchGyms()),
 	setGym: id => dispatch(selectGym({ id })),
 	modalShow: () => dispatch(showModal()),
 });
 
 class GymsView extends Component {
 	componentDidMount() {
-		const { gyms, getGym } = this.props;
+		const { gyms, getGyms } = this.props;
 
 		if (isEmpty(gyms)) {
-			getGym('1');
-			getGym('2');
-			getGym('3');
+			getGyms();
 		}
 	}
 
