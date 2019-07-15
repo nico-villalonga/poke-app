@@ -52,8 +52,7 @@ class TrainerDetail extends Component {
               <p><strong>Pokemons:</strong></p>
               <ThumbsList>
                 {
-                  pokemons.map(poke => {
-                    return (
+                  pokemons.map(poke => (
                     <li key={ poke.id }>
                       <img
                         alt={ poke.name }
@@ -61,8 +60,7 @@ class TrainerDetail extends Component {
                         src={ poke.sprites.front_default }
                       />
                     </li>
-                  )
-                })
+                  ))
                 }
               </ThumbsList>
             </ThumbsContainer>

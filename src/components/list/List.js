@@ -9,11 +9,13 @@ const List = props => {
       <Ul>
         {
           collection.map(data => (
-            <Entity
-              key={ data.id }
-              data={ data }
-              showDetail={ showDetail }
-            />
+            <li>
+              <Entity
+                key={ data.id }
+                data={ data }
+                showDetail={ showDetail }
+              />
+            </li>
           ))
         }
       </Ul>

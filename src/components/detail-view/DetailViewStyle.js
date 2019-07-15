@@ -4,7 +4,7 @@ export const Wrapper = styled.div``;
 
 export const Container = styled.div`
 	max-width: 640px;
-	background: lightgray;
+	background: #eeeeee;
 	margin: auto;
 	padding: 50px;
 	margin-top:50px;
@@ -43,6 +43,15 @@ export const CloseButton = styled.div`
 export const ThumbsContainer = styled.div`
   display: flex;
   align-items: center;
+
+  p {
+    padding-right: 30px;
+  }
+
+  img.small-image {
+    max-width: 30px;
+    max-height: 60px;
+  }
 `;
 
 export const ThumbsList = styled.ul`

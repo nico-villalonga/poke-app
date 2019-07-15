@@ -11,4 +11,23 @@ export const Ul = styled.ul`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+
+  li {
+    margin: auto;
+    padding: 20px;
+    width: 150px;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s all;
+    transition: 0.5s all;
+    height: 150px;
+    text-align: center;
+    margin: 25px;
+    border-radius: 50%;
+
+    :hover {
+      transform: scale(1.25);
+      background: #e3e3e3;
+    }
+  }
 `;

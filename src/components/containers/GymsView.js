@@ -5,8 +5,10 @@ import { fetchGyms, selectGym } from '../../redux/actions/gym';
 import { showModal } from '../../redux/actions/ui';
 import { getGymsArray } from '../../redux/reducers/gym';
 import { getModalVisibility } from '../../redux/reducers/ui';
+import Modal from '../modal/Modal';
 import List from '../list/List';
 import Gym from '../gym/Gym';
+import GymDetail from '../detail-view/GymDetail';
 
 const mapStateToProps = state => ({
 	gyms: getGymsArray(state),
@@ -35,7 +37,7 @@ class GymsView extends Component {
 	}
 
 	render() {
-		const { gyms } = this.props;
+		const { gyms, modalVisible } = this.props;
 
 		return (
 			<Fragment>
@@ -44,6 +46,15 @@ class GymsView extends Component {
 					entity={ Gym }
 					showDetail={ this.showDetail }
 				/>
+
+				{
+					modalVisible
+					&& (
+						<Modal>
+							<GymDetail />
+						</Modal>
+					)
+				}
 			</Fragment>
 		);
 	}
