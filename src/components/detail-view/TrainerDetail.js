@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { unselectTrainer } from '../../redux/actions/trainer';
-import { checkOrFetchPokemon } from '../../redux/actions/pokemon';
+import { checkOrFetchPokemons } from '../../redux/actions/pokemon';
 import { getSelectedTrainer } from '../../redux/reducers/trainer';
 import { getTrainerPokemons } from '../../redux/selectors/trainer';
 import {
@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   close: () => dispatch(unselectTrainer()),
-  getPokemons: ids => dispatch(checkOrFetchPokemon({ ids })),
+  getPokemons: ids => dispatch(checkOrFetchPokemons({ ids })),
 });
 
 class TrainerDetail extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { unselectGym } from '../../redux/actions/gym';
-import { checkOrFetchTrainer } from '../../redux/actions/trainer';
+import { checkOrFetchTrainers } from '../../redux/actions/trainer';
 import { getSelectedGym } from '../../redux/reducers/gym';
 import { getSelectedGymBadge, getSelectedGymLeader } from '../../redux/selectors/gym';
 import {
@@ -19,13 +19,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   close: () => dispatch(unselectGym()),
-  getTrainer: id => dispatch(checkOrFetchTrainer({ id })),
+  getTrainer: ids => dispatch(checkOrFetchTrainers({ ids })),
 });
 
 class GymDetail extends Component {
   componentDidMount() {
     const { getTrainer, selectedGym } = this.props;
-    getTrainer(selectedGym.leaderId);
+    getTrainer([selectedGym.leaderId]);
   }
 
   render() {

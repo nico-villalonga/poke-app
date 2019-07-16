@@ -1,5 +1,5 @@
 import apiMiddleware from './core/api';
-import loggerMiddleware from './core/log';
+// import loggerMiddleware from './core/log';
 import normalizeMiddleware from './core/normalize';
 import pokemonMiddleware from './feature/pokemon';
 import trainerMiddleware from './feature/trainer';
@@ -11,7 +11,7 @@ import uiMiddleware from './feature/ui';
 const coreMiddleware = [
   apiMiddleware,
   normalizeMiddleware,
-  loggerMiddleware,
+  // loggerMiddleware,
 ];
 
 // create the feature middleware array

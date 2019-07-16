@@ -1,4 +1,4 @@
-import { compose, keys, reduce } from 'ramda';
+import { compose, inc, keys, map, reduce } from 'ramda';
 
 export const collectionToArray = collection => {
   const fn = (acc = [], curr) => {
@@ -11,3 +11,8 @@ export const collectionToArray = collection => {
     keys,
   )(collection);
 }
+
+export const newArrayIds = n => compose(
+  map(inc),
+  keys
+)([...Array(n)]);

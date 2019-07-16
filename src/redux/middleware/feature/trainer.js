@@ -1,4 +1,4 @@
-import { hasPath } from 'ramda';
+import { path } from 'ramda';
 import { API_ERROR, API_SUCCESS, apiSuccess } from '../../actions/api';
 import {
   TRAINER, FETCH_TRAINER,
@@ -17,8 +17,16 @@ const trainerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
       return dispatch(apiSuccess({ data: response.data[payload], feature: TRAINER }));
 
     case CHECK_OR_FETCH_TRAINER: {
-      const trainerInStore = hasPath(['trainers', 'collection', payload], getState());
-      return !trainerInStore && dispatch(apiSuccess({ data: response.data[payload], feature: TRAINER }));
+      const trainers = path(['trainers', 'collection'], getState());
+      const missing = payload.reduce((acc, curr) => {
+        if (!trainers[curr]) {
+          acc.push(curr);
+        }
+
+        return acc;
+      }, []);
+
+      return missing.forEach(id => dispatch(apiSuccess({ data: response.data[id], feature: TRAINER })));
     }
 
     case `${TRAINER} ${API_SUCCESS}`:

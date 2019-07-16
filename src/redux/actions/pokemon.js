@@ -14,7 +14,7 @@ export const fetchPokemon = ({ query = '' }) => ({
   payload: query,
 });
 
-export const checkOrFetchPokemon = ({ ids = [] }) => ({
+export const checkOrFetchPokemons = ({ ids = [] }) => ({
   type: CHECK_OR_FETCH_POKEMON,
   payload: ids,
 });

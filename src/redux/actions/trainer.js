@@ -14,9 +14,9 @@ export const fetchTrainer = ({ query = '' }) => ({
   payload: query,
 });
 
-export const checkOrFetchTrainer = ({ id }) => ({
+export const checkOrFetchTrainers = ({ ids = [] }) => ({
   type: CHECK_OR_FETCH_TRAINER,
-  payload: id,
+  payload: ids,
 });
 
 export const setTrainer = ({ data, normalizeKey }) => ({

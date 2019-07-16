@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { isEmpty } from 'ramda';
-import { fetchTrainer, selectTrainer } from '../../redux/actions/trainer';
+import { newArrayIds } from '../../utils/array';
+import { fetchTrainer, selectTrainer, checkOrFetchTrainers } from '../../redux/actions/trainer';
 import { showModal } from '../../redux/actions/ui';
 import { getTrainersArray } from '../../redux/reducers/trainer';
 import { getModalVisibility } from '../../redux/reducers/ui';
@@ -16,17 +16,17 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getTrainer: query => dispatch(fetchTrainer({ query })),
+	getInitialTrainers: ids => dispatch(checkOrFetchTrainers({ ids })),
 	setTrainer: id => dispatch(selectTrainer({ id })),
 	modalShow: () => dispatch(showModal()),
 });
 
 class TrainersView extends Component {
 	componentDidMount() {
-		const { trainers, getTrainer } = this.props;
+		const { getInitialTrainers } = this.props;
 
-		if (isEmpty(trainers)) {
-			[...Array(9).keys()].forEach(i => getTrainer(i + 1));
-		}
+		const ids = newArrayIds(6);
+		getInitialTrainers(ids);
 	}
 
 	showDetail = id => () => {
