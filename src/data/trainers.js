@@ -29,6 +29,33 @@ export default {
     },
     4: {
       id: 4,
+      name: 'Tracey Sketchit',
+      gender: 'Male',
+      homeTown: 'Tangelo Island',
+      region: 'Orange Islands',
+      pokemons: [48, 183, 123],
+      sprites: { front_default: '/images/trainers/tracey.png' },
+    },
+    5: {
+      id: 5,
+      name: 'Jessie',
+      gender: 'Female',
+      homeTown: 'Unknown',
+      region: 'Kanto',
+      pokemons: [24],
+      sprites: { front_default: '/images/trainers/jessie.png' },
+    },
+    6: {
+      id: 6,
+      name: 'James',
+      gender: 'Male',
+      homeTown: 'Unknown',
+      region: 'Kanto',
+      pokemons: [110],
+      sprites: { front_default: '/images/trainers/james.png' },
+    },
+    7: {
+      id: 7,
       name: 'Lt. Surge',
       gender: 'Male',
       homeTown: 'Vermilion City',
@@ -36,8 +63,8 @@ export default {
       pokemons: [25, 26, 100],
       sprites: { front_default: '/images/trainers/surge.png' },
     },
-    5: {
-      id: 5,
+    8: {
+      id: 8,
       name: 'Erika',
       gender: 'Female',
       homeTown: 'Celadon City',
@@ -45,8 +72,8 @@ export default {
       pokemons: [114, 70, 44],
       sprites: { front_default: '/images/trainers/erika.png' },
     },
-    6: {
-      id: 6,
+    9: {
+      id: 9,
       name: 'Koga',
       gender: 'Male',
       homeTown: 'Fuchsia City',
@@ -54,8 +81,8 @@ export default {
       pokemons: [48, 109, 89],
       sprites: { front_default: '/images/trainers/koga.png' },
     },
-    7: {
-      id: 7,
+    10: {
+      id: 10,
       name: 'Sabrina',
       gender: 'Female',
       homeTown: 'Saffron City',
@@ -63,8 +90,8 @@ export default {
       pokemons: [63, 64, 65, 122],
       sprites: { front_default: '/images/trainers/sabrina.png' },
     },
-    8: {
-      id: 8,
+    11: {
+      id: 11,
       name: 'Blaine',
       gender: 'Male',
       homeTown: 'Cinnabar Isle',
@@ -72,8 +99,8 @@ export default {
       pokemons: [38, 78, 59],
       sprites: { front_default: '/images/trainers/blaine.png' },
     },
-    9: {
-      id: 9,
+    12: {
+      id: 12,
       name: 'Giovanni',
       gender: 'Male',
       homeTown: 'Viridian Isle',
