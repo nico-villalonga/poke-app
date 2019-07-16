@@ -13,5 +13,5 @@ export const getSelectedGymLeader = state => {
   const gym = getSelectedGym(state);
   const trainers = getTrainers(state);
 
-  return trainers[gym.leaderId];
+  return trainers[gym.leaderId] || {};
 };

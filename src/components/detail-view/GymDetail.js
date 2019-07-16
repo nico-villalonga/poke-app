@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { isEmpty } from 'ramda';
 import { unselectGym } from '../../redux/actions/gym';
+import { checkOrFetchTrainer } from '../../redux/actions/trainer';
 import { getSelectedGym } from '../../redux/reducers/gym';
 import { getSelectedGymBadge, getSelectedGymLeader } from '../../redux/selectors/gym';
 import {
@@ -17,15 +19,25 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   close: () => dispatch(unselectGym()),
+  getTrainer: id => dispatch(checkOrFetchTrainer({ id })),
 });
 
 class GymDetail extends Component {
+  componentDidMount() {
+    const { getTrainer, selectedGym } = this.props;
+    getTrainer(selectedGym.leaderId);
+  }
+
   render() {
     const { selectedGym, close, badge, leader } = this.props;
     const {
       name, sprites,
       type, region, location,
     } = selectedGym;
+
+    if (isEmpty(leader)) {
+      return null;
+    }
 
     return (
       <Wrapper>

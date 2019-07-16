@@ -2,7 +2,7 @@ import { path } from 'ramda';
 import { API_ERROR, API_SUCCESS, apiRequest } from '../../actions/api';
 import {
   POKEMON, FETCH_POKEMON, CHECK_OR_FETCH_POKEMON,
-  setPokemon, fetchPokemon,
+  fetchPokemon, setPokemon,
 } from '../../actions/pokemon';
 
 const POKEMON_URL = 'https://pokeapi.co/api/v2/pokemon/';
