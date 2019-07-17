@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { unselectPokemon } from '../../redux/actions/pokemon';
-import { getSelectedPokemon } from '../../redux/reducers/pokemon';
+import { getSelectedPokemon } from '../../redux/selectors/pokemon';
 import {
 	Wrapper, CloseButton, Container,
 	ImageContainer, InfoContainer,

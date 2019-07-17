@@ -1,6 +1,5 @@
-import { assoc, compose, path } from 'ramda';
+import { assoc } from 'ramda';
 import { SET_BADGES } from '../actions/badge';
-import { collectionToArray } from '../../utils/array';
 
 const initState = {
   collection: {},
@@ -17,12 +16,3 @@ export const badgeReducer = (state = initState, action) => {
       return state;
   }
 };
-
-
-// Feature Selectors
-export const getBadges = path(['badges', 'collection']);
-
-export const getBadgesArray = compose (
-  collectionToArray,
-  getBadges
-);

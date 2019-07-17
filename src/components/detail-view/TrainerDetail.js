@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { unselectTrainer } from '../../redux/actions/trainer';
 import { checkOrFetchPokemons } from '../../redux/actions/pokemon';
-import { getSelectedTrainer } from '../../redux/reducers/trainer';
+import { getSelectedTrainer } from '../../redux/selectors/trainer';
 import { getTrainerPokemons } from '../../redux/selectors/trainer';
 import {
 	Wrapper, CloseButton, Container, ImageContainer,

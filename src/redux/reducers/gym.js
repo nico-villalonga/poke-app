@@ -1,6 +1,5 @@
-import { assoc, compose, path } from 'ramda';
+import { assoc } from 'ramda';
 import { SET_GYMS, SELECT_GYM, UNSELECT_GYM } from '../actions/gym';
-import { collectionToArray } from '../../utils/array';
 
 const initState = {
   selectedGymId: null,
@@ -24,19 +23,3 @@ export const gymReducer = (state = initState, action) => {
       return state;
   }
 };
-
-
-// Feature Selectors
-export const getGyms = path(['gyms', 'collection']);
-
-export const getSelectedGymId = path(['gyms', 'selectedGymId']);
-
-export const getSelectedGym = state => {
-  const selectedId = getSelectedGymId(state);
-  return getGyms(state)[selectedId];
-};
-
-export const getGymsArray = compose (
-  collectionToArray,
-  getGyms
-);

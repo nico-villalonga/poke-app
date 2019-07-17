@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { unselectGym } from '../../redux/actions/gym';
 import { checkOrFetchTrainers } from '../../redux/actions/trainer';
-import { getSelectedGym } from '../../redux/reducers/gym';
+import { getSelectedGym } from '../../redux/selectors/gym';
 import { getSelectedGymBadge, getSelectedGymLeader } from '../../redux/selectors/gym';
 import {
 	Wrapper, CloseButton, Container, ImageContainer,

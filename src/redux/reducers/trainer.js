@@ -1,6 +1,5 @@
-import { assoc, assocPath, compose, head, keys, prop, path } from 'ramda';
+import { assoc, assocPath, head, keys } from 'ramda';
 import { SET_TRAINER, SELECT_TRAINER, UNSELECT_TRAINER } from '../actions/trainer';
-import { collectionToArray } from '../../utils/array';
 
 const initState = {
   selectedTrainerId: null,
@@ -26,24 +25,3 @@ export const trainerReducer = (state = initState, action) => {
       return state;
   }
 };
-
-
-// Feature Selectors
-export const getTrainers = path(['trainers', 'collection']);
-
-export const getSelectedTrainerId = path(['trainers', 'selectedTrainerId']);
-
-export const getSelectedTrainer = state => {
-  const selectedId = getSelectedTrainerId(state);
-  return getTrainers(state)[selectedId];
-};
-
-export const getTrainerPokemonIds = compose(
-  prop('pokemons'),
-  getSelectedTrainer
-);
-
-export const getTrainersArray = compose (
-  collectionToArray,
-  getTrainers
-);

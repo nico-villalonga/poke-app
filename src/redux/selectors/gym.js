@@ -1,17 +1,41 @@
-import { getSelectedGym } from '../reducers/gym';
-import { getBadges } from '../reducers/badge';
-import { getTrainers } from '../reducers/trainer';
+import { createSelector } from 'reselect';
+import { path } from 'ramda';
+import { collectionToArray } from '../../utils/array';
+import { getBadges } from '../selectors/badge';
+import { getTrainers } from '../selectors/trainer';
 
-export const getSelectedGymBadge = state => {
-  const gym = getSelectedGym(state);
-  const badges = getBadges(state);
+// Feature selectors
+export const getGyms = createSelector(
+  path(['gyms', 'collection']),
+  gyms => gyms
+);
 
-  return badges[gym.badgeId];
-};
+export const getSelectedGymId = createSelector(
+  path(['gyms', 'selectedGymId']),
+  gymId => gymId
+);
 
-export const getSelectedGymLeader = state => {
-  const gym = getSelectedGym(state);
-  const trainers = getTrainers(state);
+export const getSelectedGym = createSelector(
+  getSelectedGymId,
+  getGyms,
+  (gymId, gyms) => gyms[gymId]
+);
 
-  return trainers[gym.leaderId] || {};
-};
+export const getGymsArray = createSelector(
+  getGyms,
+  collectionToArray
+);
+
+
+// Query selectors
+export const getSelectedGymBadge = createSelector(
+  getSelectedGym,
+  getBadges,
+  (gym, badges) => badges[gym.badgeId]
+);
+
+export const getSelectedGymLeader = createSelector(
+  getSelectedGym,
+  getTrainers,
+  (gym, trainers) => trainers[gym.leaderId] || {}
+);
