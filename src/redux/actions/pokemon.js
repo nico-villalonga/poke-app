@@ -3,7 +3,7 @@ export const POKEMON = '[Pokemon]';
 
 // action types
 export const FETCH_POKEMON = `${POKEMON} FETCH`;
-export const CHECK_OR_FETCH_POKEMON = `${POKEMON} CHECK_OR_FETCH`;
+export const CACHE_OR_FETCH_POKEMON = `${POKEMON} CACHE_OR_FETCH`;
 export const SET_POKEMON = `${POKEMON} SET`;
 export const SELECT_POKEMON = `${POKEMON} SELECT`;
 export const UNSELECT_POKEMON = `${POKEMON} UNSELECT`;
@@ -14,8 +14,8 @@ export const fetchPokemon = ({ query = '' }) => ({
   payload: query,
 });
 
-export const checkOrFetchPokemons = ({ ids = [] }) => ({
-  type: CHECK_OR_FETCH_POKEMON,
+export const cacheOrFetchPokemons = ({ ids = [] }) => ({
+  type: CACHE_OR_FETCH_POKEMON,
   payload: ids,
 });
 

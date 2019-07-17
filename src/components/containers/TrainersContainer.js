@@ -24,8 +24,8 @@ const mapDispatchToProps = dispatch => ({
 class TrainersView extends Component {
 	componentDidMount() {
 		const { getInitialTrainers } = this.props;
-
 		const ids = newArrayIds(6);
+
 		getInitialTrainers(ids);
 	}
 

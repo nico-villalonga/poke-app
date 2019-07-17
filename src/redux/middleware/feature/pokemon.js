@@ -1,7 +1,7 @@
 import { path } from 'ramda';
 import { API_ERROR, API_SUCCESS, apiRequest } from '../../actions/api';
 import {
-  POKEMON, FETCH_POKEMON, CHECK_OR_FETCH_POKEMON,
+  POKEMON, FETCH_POKEMON, CACHE_OR_FETCH_POKEMON,
   fetchPokemon, setPokemon,
 } from '../../actions/pokemon';
 
@@ -19,7 +19,7 @@ const pokemonMiddleware = ({ dispatch, getState }) => (next) => (action) => {
 			return next(apiRequest({ url, method: 'GET', feature: POKEMON }));
     }
 
-    case CHECK_OR_FETCH_POKEMON: {
+    case CACHE_OR_FETCH_POKEMON: {
       const pokemons = path(['pokemons', 'collection'], getState());
       const missing = payload.reduce((acc, curr) => {
         if (!pokemons[curr]) {

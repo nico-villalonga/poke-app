@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { isEmpty } from 'ramda';
-import { fetchPokemon, selectPokemon } from '../../redux/actions/pokemon';
+import { newArrayIds } from '../../utils/array';
+import { cacheOrFetchPokemons, selectPokemon } from '../../redux/actions/pokemon';
 import { showModal } from '../../redux/actions/ui';
 import { getPokemonsArray } from '../../redux/selectors/pokemon';
 import { getModalVisibility } from '../../redux/selectors/ui';
@@ -15,19 +15,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getPokemon: query => dispatch(fetchPokemon({ query })),
+	getInitialPokemons: ids => dispatch(cacheOrFetchPokemons({ ids })),
 	setPokemon: id => dispatch(selectPokemon({ id })),
 	modalShow: () => dispatch(showModal()),
 });
 
 class PokemonsView extends Component {
 	componentDidMount() {
-		const { pokemons, getPokemon } = this.props;
+		const { getInitialPokemons } = this.props;
+		const ids = newArrayIds(9);
 
-		if (isEmpty(pokemons)) {
-			getPokemon(1);
-			getPokemon(4);
-		}
+		getInitialPokemons(ids);
 	}
 
 	showDetail = id => () => {
@@ -42,6 +40,7 @@ class PokemonsView extends Component {
 		return (
 			<Fragment>
 				<List
+					className="pokemon"
 					collection={ pokemons }
 					showDetail={ this.showDetail }
 				/>

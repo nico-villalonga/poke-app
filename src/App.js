@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navbar from './components/navbar/Navbar';
-import PokemonsView from './components/containers/PokemonsView';
-import TrainersView from './components/containers/TrainersView';
-import GymsView from './components/containers/GymsView';
+import PokemonsContainer from './components/containers/PokemonsContainer';
+import TrainersContainer from './components/containers/TrainersContainer';
+import GymsContainer from './components/containers/GymsContainer';
 import { fetchBadges } from './redux/actions/badge';
 import './App.css';
 
@@ -18,9 +18,9 @@ const App = props => {
   return (
     <Router>
       <Navbar />
-      <Route exact path='/' component={PokemonsView} />
-      <Route path='/trainers' component={TrainersView} />
-      <Route path='/gyms' component={GymsView} />
+      <Route exact path='/' component={PokemonsContainer} />
+      <Route path='/trainers' component={TrainersContainer} />
+      <Route path='/gyms' component={GymsContainer} />
     </Router>
   );
 }

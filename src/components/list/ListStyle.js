@@ -8,12 +8,12 @@ export const Wrapper = styled.div`
 
 export const Ul = styled.ul`
   padding: 0;
+  margin-top: 50px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 
   li {
-    margin: auto;
     padding: 20px;
     width: 150px;
     display: inline-block;
@@ -22,7 +22,7 @@ export const Ul = styled.ul`
     transition: 0.5s all;
     height: 150px;
     text-align: center;
-    margin: 25px;
+    margin: 14px 25px;
     border-radius: 50%;
 
     :hover {

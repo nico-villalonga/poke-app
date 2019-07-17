@@ -18,7 +18,7 @@ export const getSelectedGymId = createSelector(
 export const getSelectedGym = createSelector(
   getSelectedGymId,
   getGyms,
-  (gymId, gyms) => gyms[gymId]
+  (gymId, gyms) => gyms[gymId] || {}
 );
 
 export const getGymsArray = createSelector(

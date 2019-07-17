@@ -3,7 +3,7 @@ export const TRAINER = '[Trainer]';
 
 // action types
 export const FETCH_TRAINER = `${TRAINER} FETCH`;
-export const CHECK_OR_FETCH_TRAINER = `${TRAINER} CHECK_OR_FETCH`;
+export const CACHE_OR_FETCH_TRAINER = `${TRAINER} CACHE_OR_FETCH`;
 export const SET_TRAINER = `${TRAINER} SET`;
 export const SELECT_TRAINER = `${TRAINER} SELECT`;
 export const UNSELECT_TRAINER = `${TRAINER} UNSELECT`;
@@ -15,7 +15,7 @@ export const fetchTrainer = ({ query = '' }) => ({
 });
 
 export const checkOrFetchTrainers = ({ ids = [] }) => ({
-  type: CHECK_OR_FETCH_TRAINER,
+  type: CACHE_OR_FETCH_TRAINER,
   payload: ids,
 });
 
