@@ -1,4 +1,4 @@
-import { compose, inc, keys, map, reduce } from 'ramda';
+import { compose, inc, is, keys, map, reduce } from 'ramda';
 
 export const collectionToArray = collection => {
   const fn = (acc = [], curr) => {
@@ -16,3 +16,5 @@ export const newArrayIds = n => compose(
   map(inc),
   keys
 )([...Array(n)]);
+
+export const arrayWrap = data => is(Array, data) ? data : [data];

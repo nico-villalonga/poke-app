@@ -1,11 +1,17 @@
+import { arrayWrap } from '../../../utils/array';
 import { dataNormalized } from '../../actions/data';
 
 const normalizeMiddleware = ({ dispatch }) => next => action => {
   const { payload, meta, type } = action;
 
   if (type.includes('SET') && meta.normalizeKey) {
-    // transform the data structure
-    const data = { [payload.id]: payload };
+    const { normalizeKey, feature } = meta;
+    const dataArray = arrayWrap(payload);
+    const data = dataArray.reduce((acc, curr) => {
+      acc[curr[normalizeKey]] = curr;
+      return acc;
+    }, {});
+
     const newAction = {
       ...action,
       meta: { normalizeKey: null },
@@ -13,7 +19,7 @@ const normalizeMiddleware = ({ dispatch }) => next => action => {
     };
 
     // notify about the transformation
-    dispatch(dataNormalized({ feature: meta.feature }));
+    dispatch(dataNormalized({ feature }));
     // continue the flow with modified action
     next(newAction);
 

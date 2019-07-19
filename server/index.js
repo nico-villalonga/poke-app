@@ -20,9 +20,10 @@ app.get('/api/gyms', (req, res) => {
   console.log('Sent gyms');
 });
 
-app.get('/api/trainers', (req, res) => {
-  res.json(trainers);
-  console.log('Sent trainers');
+app.get('/api/trainers/:trainerId', (req, res) => {
+  const trainer = trainers.find(t => t.id === Number(req.params.trainerId));
+  res.json(trainer);
+  console.log(`Sent trainer id:${trainer.id}`);
 });
 
 app.listen(port);
