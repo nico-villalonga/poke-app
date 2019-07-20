@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { isEmpty } from 'ramda';
+import { notEmpty } from '../../utils/array';
 import { unselectGym } from '../../redux/actions/gym';
 import { checkOrFetchTrainers } from '../../redux/actions/trainer';
 import { getSelectedGym } from '../../redux/selectors/gym';
@@ -35,10 +35,6 @@ class GymDetail extends Component {
       type, region, location,
     } = selectedGym;
 
-    if (isEmpty(leader)) {
-      return null;
-    }
-
     return (
       <Wrapper>
         <CloseButton onClick={ close }>[ CLOSE ]</CloseButton>
@@ -54,27 +50,37 @@ class GymDetail extends Component {
             <p><strong>Region:</strong> { region }</p>
             <p><strong>Type:</strong> { type }</p>
 
-            <ThumbsContainer>
-              <p><strong>Leader:</strong></p>
+            {
+              notEmpty(leader)
+              && (
+                <ThumbsContainer>
+                  <p><strong>Leader:</strong></p>
 
-              <img
-                alt=""
-                src={ leader.sprites.front_default }
-                title={ leader.name }
-                className="small-image"
-              />
-            </ThumbsContainer>
+                  <img
+                    alt=""
+                    src={ leader.sprites.front_default }
+                    title={ leader.name }
+                    className="small-image"
+                  />
+                </ThumbsContainer>
+              )
+            }
 
-            <ThumbsContainer>
-              <p><strong>Badge:</strong></p>
+            {
+              notEmpty(badge)
+              && (
+                <ThumbsContainer>
+                  <p><strong>Badge:</strong></p>
 
-              <img
-                alt=""
-                src={ badge.sprites.front_default }
-                title={ badge.name }
-                className="small-image"
-              />
-            </ThumbsContainer>
+                  <img
+                    alt=""
+                    src={ badge.sprites.front_default }
+                    title={ badge.name }
+                    className="small-image"
+                  />
+                </ThumbsContainer>
+              )
+            }
           </InfoContainer>
         </Container>
       </Wrapper>

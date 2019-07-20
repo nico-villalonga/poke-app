@@ -1,6 +1,8 @@
 import apiMiddleware from './core/api';
 // import loggerMiddleware from './core/log';
 import normalizeMiddleware from './core/normalize';
+import notificationMiddleware from './core/notification';
+
 import pokemonMiddleware from './feature/pokemon';
 import trainerMiddleware from './feature/trainer';
 import gymMiddleware from './feature/gym';
@@ -11,6 +13,7 @@ import uiMiddleware from './feature/ui';
 const coreMiddleware = [
   apiMiddleware,
   normalizeMiddleware,
+  notificationMiddleware,
   // loggerMiddleware,
 ];
 

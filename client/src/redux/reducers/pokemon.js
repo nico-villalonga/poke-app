@@ -1,4 +1,5 @@
-import { assoc, assocPath, keys, head } from 'ramda';
+import { assoc, assocPath } from 'ramda';
+import { getNormalizedId } from '../../utils/array';
 import { SET_POKEMON, SELECT_POKEMON, UNSELECT_POKEMON } from '../actions/pokemon';
 
 const initState = {
@@ -11,7 +12,7 @@ export const pokemonReducer = (state = initState, action) => {
 
   switch (type) {
     case SET_POKEMON: {
-      const id = head(keys(payload));
+      const id = getNormalizedId(payload);
       return assocPath(['collection', id], payload[id], state);
     };
 

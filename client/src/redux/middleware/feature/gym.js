@@ -1,4 +1,5 @@
 import { API_ERROR, API_SUCCESS, apiRequest } from '../../actions/api';
+import { setNotification } from '../../actions/notification';
 import { GYM, FETCH_GYMS, setGyms } from '../../actions/gym';
 
 const GYMS_URL = 'api/gyms';
@@ -16,8 +17,12 @@ const trainerMiddleware = ({ dispatch }) => (next) => (action) => {
     case `${GYM} ${API_SUCCESS}`:
       return next(setGyms({ data: payload, normalizeKey: 'id' }));
 
-    case `${GYM} ${API_ERROR}`:
-			return console.log('trainer api error');
+    case `${GYM} ${API_ERROR}`: {
+      const message = 'Error while fetching gyms';
+
+      console.log('gym api error', payload.message);
+      return next(setNotification({ message, feature: GYM, normalizeKey: 'feature' }));
+    }
   }
 };
 

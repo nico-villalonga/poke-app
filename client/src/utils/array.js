@@ -1,4 +1,7 @@
-import { compose, inc, is, keys, map, reduce } from 'ramda';
+import {
+  complement, compose, head, inc,
+  is, isEmpty, keys, map, reduce,
+} from 'ramda';
 
 export const collectionToArray = collection => {
   const fn = (acc = [], curr) => {
@@ -18,3 +21,7 @@ export const newArrayIds = n => compose(
 )([...Array(n)]);
 
 export const arrayWrap = data => is(Array, data) ? data : [data];
+
+export const getNormalizedId = data => head(keys(data));
+
+export const notEmpty = complement(isEmpty);

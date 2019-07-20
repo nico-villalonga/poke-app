@@ -11,10 +11,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 
     axios({ ...payload })
       .then(response => dispatch(apiSuccess({ data: response.data, feature })))
-      .catch(error => {
-        console.log('API ERROR: ', error);
-        return dispatch(apiError({ error, feature }))
-    })
+      .catch(error => dispatch(apiError({ error, feature })));
 	}
 };
 

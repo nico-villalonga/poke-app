@@ -1,4 +1,5 @@
-import { assoc, assocPath, head, keys } from 'ramda';
+import { assoc, assocPath } from 'ramda';
+import { getNormalizedId } from '../../utils/array';
 import { SET_TRAINER, SELECT_TRAINER, UNSELECT_TRAINER } from '../actions/trainer';
 
 const initState = {
@@ -11,7 +12,7 @@ export const trainerReducer = (state = initState, action) => {
 
   switch (type) {
     case SET_TRAINER: {
-      const id = head(keys(payload));
+      const id = getNormalizedId(payload);
       return assocPath(['collection', id], payload[id], state);
     }
 

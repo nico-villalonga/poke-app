@@ -16,7 +16,7 @@ export const getSelectedPokemonId = createSelector(
 export const getSelectedPokemon = createSelector(
   getSelectedPokemonId,
   getPokemons,
-  (pokemonId, pokemons) => pokemons[pokemonId]
+  (pokemonId, pokemons) => pokemons[pokemonId] || {}
 );
 
 export const getPokemonsArray = createSelector(

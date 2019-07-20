@@ -17,7 +17,7 @@ export const getSelectedTrainerId = createSelector(
 export const getSelectedTrainer = createSelector(
   getSelectedTrainerId,
   getTrainers,
-  (trainerId, trainers) => trainers[trainerId]
+  (trainerId, trainers) => trainers[trainerId] || {}
 );
 
 export const getTrainerPokemonIds = createSelector(

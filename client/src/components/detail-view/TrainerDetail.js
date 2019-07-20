@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { notEmpty } from '../../utils/array';
 import { unselectTrainer } from '../../redux/actions/trainer';
 import { cacheOrFetchPokemons } from '../../redux/actions/pokemon';
 import { getSelectedTrainer } from '../../redux/selectors/trainer';
@@ -48,22 +49,28 @@ class TrainerDetail extends Component {
             <p><strong>Region:</strong> { region }</p>
             <p><strong>Gender:</strong> { gender }</p>
 
-            <ThumbsContainer>
-              <p><strong>Pokemons:</strong></p>
-              <ThumbsList>
-                {
-                  pokemons.map(poke => (
-                    <li key={ poke.id }>
-                      <img
-                        alt={ poke.name }
-                        title={ poke.name }
-                        src={ poke.sprites.front_default }
-                      />
-                    </li>
-                  ))
-                }
-              </ThumbsList>
-            </ThumbsContainer>
+            {
+              notEmpty(pokemons)
+              && (
+                <ThumbsContainer>
+                  <p><strong>Pokemons:</strong></p>
+
+                  <ThumbsList>
+                    {
+                      pokemons.map(poke => (
+                        <li key={ poke.id }>
+                          <img
+                            alt={ poke.name }
+                            title={ poke.name }
+                            src={ poke.sprites.front_default }
+                          />
+                        </li>
+                      ))
+                    }
+                  </ThumbsList>
+                </ThumbsContainer>
+              )
+            }
           </InfoContainer>
         </Container>
       </Wrapper>

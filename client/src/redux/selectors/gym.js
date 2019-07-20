@@ -31,7 +31,7 @@ export const getGymsArray = createSelector(
 export const getSelectedGymBadge = createSelector(
   getSelectedGym,
   getBadges,
-  (gym, badges) => badges[gym.badgeId]
+  (gym, badges) => badges[gym.badgeId] || {}
 );
 
 export const getSelectedGymLeader = createSelector(

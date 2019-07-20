@@ -1,5 +1,6 @@
 import { path } from 'ramda';
 import { API_ERROR, API_SUCCESS, apiRequest } from '../../actions/api';
+import { setNotification } from '../../actions/notification';
 import {
   TRAINER, FETCH_TRAINER, CACHE_OR_FETCH_TRAINER,
   fetchTrainer, setTrainer,
@@ -35,8 +36,12 @@ const trainerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
     case `${TRAINER} ${API_SUCCESS}`:
       return next(setTrainer({ data: payload, normalizeKey: 'id' }));
 
-    case `${TRAINER} ${API_ERROR}`:
-			return console.log('trainer api error');
+    case `${TRAINER} ${API_ERROR}`: {
+      const message = 'Error while fetching trainers';
+
+      console.log('trainer api error', payload.message);
+      return next(setNotification({ message, feature: TRAINER, normalizeKey: 'feature' }));
+    }
   }
 };
 
