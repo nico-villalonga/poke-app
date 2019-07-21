@@ -17,10 +17,12 @@ class Modal extends Component {
   }
 
   componentDidMount() {
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', this.keyPressed);
   }
 
   componentWillUnmount() {
+    document.body.style.overflow = 'inherit';
     window.removeEventListener('keydown', this.keyPressed);
   }
 

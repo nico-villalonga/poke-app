@@ -5,8 +5,8 @@ import Navbar from './components/navbar/Navbar';
 import PokemonsContainer from './components/containers/PokemonsContainer';
 import TrainersContainer from './components/containers/TrainersContainer';
 import GymsContainer from './components/containers/GymsContainer';
+import Notification from './components/notification/Notification';
 import { fetchBadges } from './redux/actions/badge';
-import './App.css';
 
 const mapDispatchToProps = dispatch => ({
 	getBadges: query => dispatch(fetchBadges()),
@@ -21,6 +21,7 @@ const App = props => {
       <Route exact path='/' component={PokemonsContainer} />
       <Route path='/trainers' component={TrainersContainer} />
       <Route path='/gyms' component={GymsContainer} />
+      <Notification />
     </Router>
   );
 }
