@@ -18,7 +18,7 @@ const badgeMiddleware = ({ dispatch }) => (next) => (action) => {
       return next(setBadges({ data: payload, normalizeKey: 'id' }));
 
     case `${BADGE} ${API_ERROR}`: {
-      const message = 'Error while fetching gyms';
+      const message = 'Error while fetching badges';
 
       console.log('badge api error', payload.message);
       return next(setNotification({ message, feature: BADGE, normalizeKey: 'feature' }));

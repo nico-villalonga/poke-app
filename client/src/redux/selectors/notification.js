@@ -1,8 +1,14 @@
 import { createSelector } from 'reselect';
-import { prop } from 'ramda';
+import { path } from 'ramda';
+import { collectionToArray } from '../../utils/array';
 
 // Feature Selectors
-export const getNotification = createSelector(
-  prop('notifications'),
+export const getNotifications = createSelector(
+  path(['notifications', 'collection']),
   notifications => notifications
+);
+
+export const getNotificationsArray = createSelector(
+  getNotifications,
+  collectionToArray
 );

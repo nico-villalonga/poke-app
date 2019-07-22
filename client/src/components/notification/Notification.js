@@ -1,24 +1,29 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
-import { notEmpty } from '../../utils/array';
-import { getNotification } from '../../redux/selectors/notification';
+import { isEmpty } from 'ramda';
+import { getNotificationsArray } from '../../redux/selectors/notification';
 import { Wrapper } from './NotificationStyle';
 
 const mapStateToProps = state => ({
-	notification: getNotification(state),
+	notifications: getNotificationsArray(state),
 });
 
 const Notification = props => {
-  const { notification } = props;
+  const { notifications } = props;
 
-  return notEmpty(notification)
-    && createPortal(
-      <Wrapper>
-        { notification['[Trainer]'].message }
+  if (isEmpty(notifications)) {
+    return null;
+  }
+
+  return notifications.map(notification => (
+    createPortal(
+      <Wrapper number={ notification.number }>
+        { notification.message }
       </Wrapper>,
       document.querySelector('#notification')
-    );
+    )
+  ));
 }
 
 export default connect(mapStateToProps)(Notification);

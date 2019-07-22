@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   background: #ee6d71;
   position: absolute;
   right: 50px;
-  bottom: 50px;
+  bottom: ${props => props.number * 100 + 50}px;
   display: flex;
   align-items: center;
   justify-content: center;
