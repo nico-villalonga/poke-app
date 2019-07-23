@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { newArrayIds } from '../../utils/array';
-import { cacheOrFetchPokemons, selectPokemon } from '../../redux/actions/pokemon';
-import { showModal } from '../../redux/actions/ui';
-import { getPokemonsArray } from '../../redux/selectors/pokemon';
-import { getModalVisibility } from '../../redux/selectors/ui';
-import Modal from '../modal/Modal';
-import List from '../list/List';
-import PokemonDetail from '../detail-view/PokemonDetail';
+import { newArrayIds } from '../utils/array';
+import { cacheOrFetchPokemons, selectPokemon } from '../redux/actions/pokemon';
+import { showModal } from '../redux/actions/ui';
+import { getPokemonsArray } from '../redux/selectors/pokemon';
+import { getModalVisibility } from '../redux/selectors/ui';
+import Modal from '../components/modal/Modal';
+import List from '../components/list/List';
+import PokemonDetail from '../components/detail-view/PokemonDetail';
 
 const mapStateToProps = state => ({
 	pokemons: getPokemonsArray(state),
@@ -30,6 +30,7 @@ class PokemonsView extends Component {
 
 	showDetail = id => () => {
 		const { setPokemon, modalShow } = this.props;
+
 		setPokemon(id);
 		modalShow();
 	}

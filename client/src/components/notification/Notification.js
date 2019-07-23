@@ -16,14 +16,19 @@ const Notification = props => {
     return null;
   }
 
-  return notifications.map(notification => (
-    createPortal(
-      <Wrapper number={ notification.number }>
-        { notification.message }
+  return notifications.map(notification => {
+    const { number, type = 'error', message = '' } = notification;
+
+    return createPortal(
+      <Wrapper
+        number={ number }
+        type={ type }
+      >
+        { message }
       </Wrapper>,
       document.querySelector('#notification')
     )
-  ));
+  });
 }
 
 export default connect(mapStateToProps)(Notification);

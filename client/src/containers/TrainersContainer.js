@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { newArrayIds } from '../../utils/array';
-import { fetchTrainer, selectTrainer, checkOrFetchTrainers } from '../../redux/actions/trainer';
-import { showModal } from '../../redux/actions/ui';
-import { getTrainersArray } from '../../redux/selectors/trainer';
-import { getModalVisibility } from '../../redux/selectors/ui';
-import Modal from '../modal/Modal';
-import List from '../list/List';
-import TrainerDetail from '../detail-view/TrainerDetail';
+import { newArrayIds } from '../utils/array';
+import { fetchTrainer, selectTrainer, checkOrFetchTrainers } from '../redux/actions/trainer';
+import { showModal } from '../redux/actions/ui';
+import { getTrainersArray } from '../redux/selectors/trainer';
+import { getModalVisibility } from '../redux/selectors/ui';
+import Modal from '../components/modal/Modal';
+import List from '../components/list/List';
+import TrainerDetail from '../components/detail-view/TrainerDetail';
 
 const mapStateToProps = state => ({
 	trainers: getTrainersArray(state),
@@ -31,6 +31,7 @@ class TrainersView extends Component {
 
 	showDetail = id => () => {
 		const { setTrainer, modalShow } = this.props;
+
 		setTrainer(id);
 		modalShow();
 	}
