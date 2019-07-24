@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
   height: 80px;
   border-radius: 6px;
   ${ ({ type }) => getNotificationColor(type) }
-  position: absolute;
+  position: fixed;
   right: 50px;
   bottom: ${props => props.number * 100 + 50}px;
   display: flex;

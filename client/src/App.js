@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchBadges } from './redux/actions/badge';
-import { showOffline } from './redux/actions/ui';
+import { showOnline, showOffline } from './redux/actions/ui';
 import Navbar from './components/navbar/Navbar';
 import PokemonsContainer from './containers/PokemonsContainer';
 import TrainersContainer from './containers/TrainersContainer';
@@ -11,19 +11,23 @@ import Notification from './components/notification/Notification';
 
 const mapDispatchToProps = dispatch => ({
   getBadges: query => dispatch(fetchBadges()),
+  notifyOnline: () => dispatch(showOnline()),
   notifyOffline: () => dispatch(showOffline()),
 });
 
 class App extends Component {
   componentDidMount() {
-    const { getBadges, notifyOffline } = this.props;
+    const { getBadges, notifyOnline, notifyOffline } = this.props;
 
     getBadges();
+    window.addEventListener('online', notifyOnline);
     window.addEventListener('offline', notifyOffline);
   }
 
   componentWillUnmount() {
-    const { notifyOffline } = this.props;
+    const { notifyOnline, notifyOffline } = this.props;
+
+    window.removeEventListener('online', notifyOnline);
     window.removeEventListener('offline', notifyOffline);
   }
 
