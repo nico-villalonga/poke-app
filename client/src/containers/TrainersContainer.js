@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { newArrayIds } from '../utils/array';
-import { fetchTrainer, selectTrainer, checkOrFetchTrainers } from '../redux/actions/trainer';
+import {
+	checkOrFetchTrainers, fetchTrainer, selectTrainer, unselectTrainer,
+} from '../redux/actions/trainer';
 import { showModal } from '../redux/actions/ui';
 import { getTrainersArray } from '../redux/selectors/trainer';
 import { getModalVisibility } from '../redux/selectors/ui';
@@ -19,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
 	getInitialTrainers: ids => dispatch(checkOrFetchTrainers({ ids })),
 	setTrainer: id => dispatch(selectTrainer({ id })),
 	modalShow: () => dispatch(showModal()),
+	closeModal: () => dispatch(unselectTrainer()),
 });
 
 class TrainersView extends Component {
@@ -37,7 +40,7 @@ class TrainersView extends Component {
 	}
 
 	render() {
-		const { trainers, modalVisible } = this.props;
+		const { trainers, closeModal } = this.props;
 
 		return (
 			<Fragment>
@@ -47,14 +50,9 @@ class TrainersView extends Component {
 					showDetail={ this.showDetail }
 				/>
 
-				{
-					modalVisible
-					&& (
-						<Modal>
-							<TrainerDetail />
-						</Modal>
-					)
-				}
+				<Modal closeModal={ closeModal }>
+					<TrainerDetail />
+				</Modal>
 			</Fragment>
 		);
 	}

@@ -1,23 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { newArrayIds } from '../utils/array';
-import { cacheOrFetchPokemons, selectPokemon } from '../redux/actions/pokemon';
+import { cacheOrFetchPokemons, selectPokemon, unselectPokemon } from '../redux/actions/pokemon';
 import { showModal } from '../redux/actions/ui';
 import { getPokemonsArray } from '../redux/selectors/pokemon';
-import { getModalVisibility } from '../redux/selectors/ui';
 import Modal from '../components/modal/Modal';
 import List from '../components/list/List';
 import PokemonDetail from '../components/detail-view/PokemonDetail';
 
 const mapStateToProps = state => ({
 	pokemons: getPokemonsArray(state),
-	modalVisible: getModalVisibility(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getInitialPokemons: ids => dispatch(cacheOrFetchPokemons({ ids })),
 	setPokemon: id => dispatch(selectPokemon({ id })),
 	modalShow: () => dispatch(showModal()),
+	closeModal: () => dispatch(unselectPokemon()),
 });
 
 class PokemonsView extends Component {
@@ -36,7 +35,7 @@ class PokemonsView extends Component {
 	}
 
 	render() {
-		const { pokemons, modalVisible } = this.props;
+		const { pokemons, closeModal } = this.props;
 
 		return (
 			<Fragment>
@@ -46,14 +45,9 @@ class PokemonsView extends Component {
 					showDetail={ this.showDetail }
 				/>
 
-				{
-					modalVisible
-					&& (
-						<Modal>
-							<PokemonDetail />
-						</Modal>
-					)
-				}
+				<Modal closeModal={ closeModal }>
+					<PokemonDetail />
+				</Modal>
 			</Fragment>
 		);
 	}

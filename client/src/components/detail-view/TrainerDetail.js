@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { notEmpty } from '../../utils/array';
-import { unselectTrainer } from '../../redux/actions/trainer';
 import { cacheOrFetchPokemons } from '../../redux/actions/pokemon';
 import { getSelectedTrainer } from '../../redux/selectors/trainer';
 import { getTrainerPokemons } from '../../redux/selectors/trainer';
 import {
-	Wrapper, CloseButton, Container, ImageContainer,
-  InfoContainer, ThumbsContainer, ThumbsList,
+  Wrapper, ImageContainer, InfoContainer,
+  ThumbsContainer, ThumbsList,
 } from './DetailViewStyle';
 
 
@@ -17,7 +16,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  close: () => dispatch(unselectTrainer()),
   getPokemons: ids => dispatch(cacheOrFetchPokemons({ ids })),
 });
 
@@ -28,7 +26,7 @@ class TrainerDetail extends Component {
   }
 
   render() {
-    const { selectedTrainer, close, pokemons } = this.props;
+    const { selectedTrainer, pokemons } = this.props;
     const {
       name, sprites, gender,
       homeTown, region,
@@ -36,43 +34,39 @@ class TrainerDetail extends Component {
 
     return (
       <Wrapper>
-        <CloseButton onClick={ close }>[ CLOSE ]</CloseButton>
+        <ImageContainer>
+          { sprites && <img alt="" src={ sprites.front_default } /> }
+          <h2>{ name }</h2>
+        </ImageContainer>
 
-        <Container>
-          <ImageContainer>
-            { sprites && <img alt="" src={ sprites.front_default } /> }
-            <h2>{ name }</h2>
-          </ImageContainer>
+        <InfoContainer>
+          <p><strong>HomeTown:</strong> { homeTown }</p>
+          <p><strong>Region:</strong> { region }</p>
+          <p><strong>Gender:</strong> { gender }</p>
 
-          <InfoContainer>
-            <p><strong>HomeTown:</strong> { homeTown }</p>
-            <p><strong>Region:</strong> { region }</p>
-            <p><strong>Gender:</strong> { gender }</p>
+          {
+            notEmpty(pokemons)
+            && (
+              <ThumbsContainer>
+                <p><strong>Pokemons:</strong></p>
 
-            {
-              notEmpty(pokemons)
-              && (
-                <ThumbsContainer>
-                  <p><strong>Pokemons:</strong></p>
-
-                  <ThumbsList>
-                    {
-                      pokemons.map(poke => (
-                        <li key={ poke.id }>
-                          <img
-                            alt={ poke.name }
-                            title={ poke.name }
-                            src={ poke.sprites.front_default }
-                          />
-                        </li>
-                      ))
-                    }
-                  </ThumbsList>
-                </ThumbsContainer>
-              )
-            }
-          </InfoContainer>
-        </Container>
+                <ThumbsList>
+                  {
+                    pokemons.map(poke => (
+                      <li key={ poke.id }>
+                        <img
+                          alt={ poke.name }
+                          title={ poke.name }
+                          src={ poke.sprites.front_default }
+                        />
+                      </li>
+                    ))
+                  }
+                </ThumbsList>
+              </ThumbsContainer>
+            )
+          }
+        </InfoContainer>
       </Wrapper>
     );
   }

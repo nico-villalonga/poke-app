@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
 import { hideModal } from '../../redux/actions/ui';
-import { Wrapper } from './ModalStyle';
+import { getModalVisibility } from '../../redux/selectors/ui';
+import { Wrapper, Container, CloseButton } from './ModalStyle';
 
+
+const mapStateToProps = state => ({
+	modalVisible: getModalVisibility(state),
+});
 
 const mapDispatchToProps = dispatch => ({
 	modalHide: () => dispatch(hideModal()),
@@ -17,12 +22,10 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', this.keyPressed);
   }
 
   componentWillUnmount() {
-    document.body.style.overflow = 'inherit';
     window.removeEventListener('keydown', this.keyPressed);
   }
 
@@ -34,15 +37,28 @@ class Modal extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, modalVisible, closeModal } = this.props;
+    const overflow = modalVisible ? 'hidden' : 'inherit';
+
+    document.body.style.overflow = overflow;
+
+    if (!modalVisible) {
+      return null;
+    }
 
     return createPortal(
       <Wrapper>
-        { children }
+        <Container>
+          <CloseButton onClick={ closeModal }>
+            <img alt="" src="/images/close.svg" />
+          </CloseButton>
+
+          { children }
+        </Container>
       </Wrapper>,
       document.querySelector('#modal')
     );
   }
 }
 
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
