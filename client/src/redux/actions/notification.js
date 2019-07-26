@@ -9,8 +9,8 @@ export const setNotification = ({ type, message, feature, normalizeKey }) => ({
   meta: { feature, normalizeKey },
 });
 
-export const removeNotification = ({ id, feature }) => ({
+export const removeNotification = ({ feature }) => ({
   type: `${feature} ${REMOVE_NOTIFICATION}`,
-  payload: { id, feature },
+  payload: { feature },
   meta: { feature },
 });

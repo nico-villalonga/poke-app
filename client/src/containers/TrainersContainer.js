@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { newArrayIds } from '../utils/array';
 import {
-	checkOrFetchTrainers, fetchTrainer, selectTrainer, unselectTrainer,
+	cacheOrFetchTrainers, fetchTrainer, selectTrainer, unselectTrainer,
 } from '../redux/actions/trainer';
 import { showModal } from '../redux/actions/ui';
 import { getTrainersArray } from '../redux/selectors/trainer';
@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getTrainer: query => dispatch(fetchTrainer({ query })),
-	getInitialTrainers: ids => dispatch(checkOrFetchTrainers({ ids })),
+	getInitialTrainers: ids => dispatch(cacheOrFetchTrainers({ ids })),
 	setTrainer: id => dispatch(selectTrainer({ id })),
 	modalShow: () => dispatch(showModal()),
 	closeModal: () => dispatch(unselectTrainer()),

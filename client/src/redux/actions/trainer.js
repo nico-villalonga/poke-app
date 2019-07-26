@@ -14,7 +14,7 @@ export const fetchTrainer = ({ query = '' }) => ({
   payload: query,
 });
 
-export const checkOrFetchTrainers = ({ ids = [] }) => ({
+export const cacheOrFetchTrainers = ({ ids = [] }) => ({
   type: CACHE_OR_FETCH_TRAINER,
   payload: ids,
 });

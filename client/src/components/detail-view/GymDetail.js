@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { notEmpty } from '../../utils/array';
-import { checkOrFetchTrainers } from '../../redux/actions/trainer';
+import { cacheOrFetchTrainers } from '../../redux/actions/trainer';
 import { getSelectedGym } from '../../redux/selectors/gym';
 import { getSelectedGymBadge, getSelectedGymLeader } from '../../redux/selectors/gym';
 import { Wrapper, ImageContainer, InfoContainer, ThumbsContainer } from './DetailViewStyle';
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTrainer: ids => dispatch(checkOrFetchTrainers({ ids })),
+  getTrainer: ids => dispatch(cacheOrFetchTrainers({ ids })),
 });
 
 class GymDetail extends Component {
