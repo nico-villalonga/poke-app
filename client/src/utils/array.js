@@ -25,3 +25,10 @@ export const arrayWrap = data => is(Array, data) ? data : [data];
 export const getNormalizedId = data => head(keys(data));
 
 export const notEmpty = complement(isEmpty);
+
+export const normalizeData = (normalizeKey, data) => {
+  return arrayWrap(data).reduce((acc, curr) => {
+    acc[curr[normalizeKey]] = curr;
+    return acc;
+  }, {});
+};

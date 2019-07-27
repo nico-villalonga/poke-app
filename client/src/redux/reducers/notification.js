@@ -8,7 +8,7 @@ const initState = {
 };
 
 export const notificationsReducer = (state = initState, action) => {
-  const { payload, type } = action;
+  const { payload, type = '' } = action;
 
   switch (true) {
     case type.includes(SET_NOTIFICATION): {

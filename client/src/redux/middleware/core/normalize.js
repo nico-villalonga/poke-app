@@ -1,4 +1,5 @@
-import { arrayWrap } from '../../../utils/array';
+import { always, assoc, evolve } from 'ramda';
+import { normalizeData } from '../../../utils/array';
 import { dataNormalized } from '../../actions/data';
 
 const normalizeMiddleware = ({ dispatch }) => next => action => {
@@ -6,17 +7,11 @@ const normalizeMiddleware = ({ dispatch }) => next => action => {
 
   if (type.includes('SET') && meta.normalizeKey) {
     const { normalizeKey, feature } = meta;
-    const dataArray = arrayWrap(payload);
-    const data = dataArray.reduce((acc, curr) => {
-      acc[curr[normalizeKey]] = curr;
-      return acc;
-    }, {});
-
-    const newAction = {
-      ...action,
-      meta: { normalizeKey: null },
-      payload: data,
-    };
+    const data = normalizeData(normalizeKey, payload);
+    const newAction = evolve({
+      meta: assoc('normalizeKey', null),
+      payload: always(data),
+    })(action);
 
     // notify about the transformation
     dispatch(dataNormalized({ feature }));

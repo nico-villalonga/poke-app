@@ -1,9 +1,10 @@
+import { POKEMON } from '../pokemon';
 import {
   SET_NOTIFICATION, REMOVE_NOTIFICATION,
   setNotification, removeNotification,
 } from '../notification';
 
-const feature = 'POKEMON';
+const feature = POKEMON;
 
 describe('test notification action creator', () => {
   it('should create a setNotification action', () => {
