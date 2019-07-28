@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
-import { path } from 'ramda';
-import { collectionToArray } from '../../utils/array';
+import { path, values } from 'ramda';
 import { getBadges } from '../selectors/badge';
 import { getTrainers } from '../selectors/trainer';
 
@@ -23,7 +22,7 @@ export const getSelectedGym = createSelector(
 
 export const getGymsArray = createSelector(
   getGyms,
-  collectionToArray
+  values
 );
 
 

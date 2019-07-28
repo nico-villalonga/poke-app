@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
-import { path } from 'ramda';
-import { collectionToArray } from '../../utils/array';
+import { path, values } from 'ramda';
 
 // Feature Selectors
 export const getNotifications = createSelector(
@@ -10,5 +9,5 @@ export const getNotifications = createSelector(
 
 export const getNotificationsArray = createSelector(
   getNotifications,
-  collectionToArray
+  values
 );

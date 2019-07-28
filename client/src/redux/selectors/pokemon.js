@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
-import { path } from 'ramda';
-import { collectionToArray } from '../../utils/array';
+import { path, values } from 'ramda';
 
 // Feature Selectors
 export const getPokemons = createSelector(
@@ -21,5 +20,5 @@ export const getSelectedPokemon = createSelector(
 
 export const getPokemonsArray = createSelector(
   getPokemons,
-  collectionToArray
+  values
 );
