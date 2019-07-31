@@ -16,9 +16,18 @@ const PokemonDetail = props => {
   } = selectedPokemon;
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="pokemon-detail">
       <ImageContainer>
-        { sprites && <img alt="" src={ sprites.front_default } /> }
+        {
+          sprites
+          && (
+            <img
+              data-testid={`${name}-img`}
+              alt=""
+              src={ sprites.front_default }
+            />
+          )
+        }
         <h2>{ name }</h2>
       </ImageContainer>
 
@@ -28,14 +37,14 @@ const PokemonDetail = props => {
 
         <div>
           <p><strong>Types:</strong></p>
-          <ul>
+          <ul data-testid="pokemon-types">
             { types.map((type, i) => <li key={ i }>{ type.type.name }</li>) }
           </ul>
         </div>
 
         <div>
           <p><strong>Abilities:</strong></p>
-          <ul>
+          <ul data-testid="pokemon-abilities">
             { abilities.map((ability, i) => <li key={ i }>{ ability.ability.name }</li>) }
           </ul>
         </div>

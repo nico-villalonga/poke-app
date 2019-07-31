@@ -33,9 +33,18 @@ class TrainerDetail extends Component {
     } = selectedTrainer;
 
     return (
-      <Wrapper>
+      <Wrapper data-testid="trainer-detail">
         <ImageContainer>
-          { sprites && <img alt="" src={ sprites.front_default } /> }
+          {
+            sprites
+            && (
+              <img
+                data-testid={`${name}-img`}
+                alt=""
+                src={ sprites.front_default }
+              />
+            )
+          }
           <h2>{ name }</h2>
         </ImageContainer>
 
@@ -55,6 +64,7 @@ class TrainerDetail extends Component {
                     pokemons.map(poke => (
                       <li key={ poke.id }>
                         <img
+                          data-testid={`${poke.name}-img`}
                           alt={ poke.name }
                           title={ poke.name }
                           src={ poke.sprites.front_default }

@@ -31,9 +31,18 @@ class GymDetail extends Component {
     } = selectedGym;
 
     return (
-      <Wrapper>
+      <Wrapper data-testid="gym-detail">
         <ImageContainer>
-          { sprites && <img alt="" src={ sprites.front_default } /> }
+          {
+            sprites
+            && (
+              <img
+                data-testid={`${name}-img`}
+                alt=""
+                src={ sprites.front_default }
+              />
+            )
+          }
           <h2>{ name }</h2>
         </ImageContainer>
 
@@ -49,6 +58,7 @@ class GymDetail extends Component {
                 <p><strong>Leader:</strong></p>
 
                 <img
+                  data-testid={`${leader.name}-img`}
                   alt=""
                   src={ leader.sprites.front_default }
                   title={ leader.name }
@@ -65,6 +75,7 @@ class GymDetail extends Component {
                 <p><strong>Badge:</strong></p>
 
                 <img
+                  data-testid={`${badge.name}-img`}
                   alt=""
                   src={ badge.sprites.front_default }
                   title={ badge.name }

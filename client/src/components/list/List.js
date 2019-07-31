@@ -1,12 +1,17 @@
 import React from 'react';
+import { isEmpty, isNil } from 'ramda';
 import ListElement from '../list-element/ListElement';
 import { Wrapper, Ul} from './ListStyle';
 
 const List = props => {
-  const { className = '', collection, showDetail } = props;
+  const { className, collection, showDetail } = props;
+
+  if (isEmpty(collection) || isNil(collection)) {
+    return null;
+  }
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="list">
       <Ul>
         {
           collection.map(data => (
